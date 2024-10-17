@@ -1,1 +1,1 @@
-Resultado pesqusa
+converter "09/10/2024 17:30:59" para isso  "2024-10-17T17:30:59.000Z" em java script
