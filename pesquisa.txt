@@ -1,1 +1,22 @@
 converter "09/10/2024 17:30:59" para isso  "2024-10-17T17:30:59.000Z" em java script
+
+
+
+
+function convertToISO(dateString) {
+    // Dividir a string de entrada para extrair a data e a hora
+    const [datePart, timePart] = dateString.split(' ');
+
+    // Dividir a data e inverter para o formato ISO (ano-mês-dia)
+    const [day, month, year] = datePart.split('/');
+    const isoDate = `${year}-${month}-${day}`;
+
+    // Concatenar a data e a hora e adicionar o sufixo 'Z' para UTC
+    const isoDateTime = `${isoDate}T${timePart}.000Z`;
+
+    return isoDateTime;
+}
+
+const inputDate = "09/10/2024 17:30:59";
+const result = convertToISO(inputDate);
+console.log(result); // Saída: 2024-10-09T17:30:59.000Z
