@@ -1,22 +1,47 @@
-converter "09/10/2024 17:30:59" para isso  "2024-10-17T17:30:59.000Z" em java script
+   public boolean validarRetentativaFiis(PagamentoRequest request, int receiveCount) {
 
+        var fazerRetentativa = true;
 
+        if (receiveCount > 1) {
+            PagamentoStatus status = new PagamentoStatus();
+            try {
 
+                int numeroDias = (int) Duration.between(request.getDataPagamento().plusDays(-1), LocalDateTime.now()).toDays();
+                var historicoTransacoesResponse = this.buscarHistoricoTransacoesUseCase.executar(
+                        request.getFinalNumeroCartao(),
+                        request.getNumeroBin(),
+                        request.getCpf(),
+                        numeroDias,
+                        request.getFinalNumeroCartao()
+                );
 
-function convertToISO(dateString) {
-    // Dividir a string de entrada para extrair a data e a hora
-    const [datePart, timePart] = dateString.split(' ');
+                var dataPagamento = request.getDataPagamento();
+                var horaTransacao = dataPagamento.toLocalTime();
+                var horaTransacaoPlus = dataPagamento.toLocalTime().plusMinutes(receiveCount * 15L);
 
-    // Dividir a data e inverter para o formato ISO (ano-mês-dia)
-    const [day, month, year] = datePart.split('/');
-    const isoDate = `${year}-${month}-${day}`;
+                var transacoes = historicoTransacoesResponse.getResponseData().getListaAutorizacoes().stream().filter(
+                        autorizacao -> autorizacao.getValorFaturamento().doubleValue() == request.getValorTransacao() &&
+                                autorizacao.getDtTransacao().toString().equals(dataPagamento.toLocalDate().toString()) &&
+                                LocalTime.parse(autorizacao.getHrTransacao()).isAfter(horaTransacao) &&
+                                LocalTime.parse(autorizacao.getHrTransacao()).isBefore(horaTransacaoPlus)
+                ).toList();
 
-    // Concatenar a data e a hora e adicionar o sufixo 'Z' para UTC
-    const isoDateTime = `${isoDate}T${timePart}.000Z`;
+                if (transacoes.isEmpty()) {
+                    throw new InternalServerErrorException("AUTORIZAÇÃO NÃO ENCONTRADA", "Falha ao verificar as autorizações");
+                }
 
-    return isoDateTime;
-}
+                status.setSucesso(true);
+                status.setMensagem(MSG_SUCESSO);
+                this.postaMensagemDeRetorno(request, status);
 
-const inputDate = "09/10/2024 17:30:59";
-const result = convertToISO(inputDate);
-console.log(result); // Saída: 2024-10-09T17:30:59.000Z
+                fazerRetentativa = false;
+
+            } catch (Exception e) {
+                logError("validarRetentativaFiisError", Layer.INTERACTORS, "AUTORIZAÇÃO NÃO ENCONTRADA.", this.getClass(), e).log();
+            }
+
+        }
+
+        return fazerRetentativa;
+
+    }
