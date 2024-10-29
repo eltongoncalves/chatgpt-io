@@ -1,16 +1,11 @@
-BigDecimal valorTransacao = new BigDecimal(request.getValorTransacao().toString());
-String dataTransacao = dataPagamento.toLocalDate().toString();
-
-var transacoes = historicoTransacoesResponse.getResponseData()
-    .getListaAutorizacoes()
-    .stream()
-    .filter(autorizacao -> {
-        boolean valorIgual = autorizacao.getValorFaturamento().compareTo(valorTransacao) == 0;
-        boolean dataIgual = autorizacao.getDtTransacao().toString().equals(dataTransacao);
-        LocalTime horaTransacaoAutorizacao = LocalTime.parse(autorizacao.getHrTransacao());
-        boolean horaDepois = horaTransacaoAutorizacao.isAfter(horaTransacao);
-        boolean horaAntes = horaTransacaoAutorizacao.isBefore(horaTransacaoPlus);
-
-        return valorIgual && dataIgual && horaDepois && horaAntes;
-    })
-    .toList();
+    private static String transformarEmJson(String message) {
+        if (Objects.nonNull(message) && message.contains("\\")) {
+            message = message.replaceAll("\\\\", "");
+            message = message.replaceFirst("\"", "");
+            if (message.length() > 0) {
+                message = message.substring(0, message.length() - 1);
+            }
+            logger.info("Mensagem tratada com sucesso");
+        }
+        return message;
+    }
