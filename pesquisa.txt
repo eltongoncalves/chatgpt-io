@@ -1,6 +1,14 @@
+    private static String transformarEmJson(String message) {
+        if (Objects.nonNull(message) && message.contains("\\")) {
+            message = message
+                    .replaceFirst("\"", "")
+                    .replace("\\\"", "\"")
+                    .replace("\\\\", "\\");
 
-"{\"dataPagamento\":\"15/11/2023 18:28:28\",\"valorTransacao\":101.63,\"numeroControle\":\"757568\",\"validadeCartao\":\"05/27\",\"cpf\":\"14145658442\",\"numeroBin\":\"553450\",\"finalNumeroCartao\":\"9028\",\"idRequisicaoPagamento\":2303804,\"idRecomposicao\":2268265,\"contaCartao\":\"\"}"
-
-
-
-{"dataPagamento":"15/11/2023 18:28:28","valorTransacao":101.63,"numeroControle":"757568","validadeCartao":"05/27","cpf":"14145658442","numeroBin":"553450","finalNumeroCartao":"9028","idRequisicaoPagamento":2303804,"idRecomposicao":2268265,"contaCartao":""}
+            if (!message.isEmpty()) {
+                message = message.substring(0, message.length() - 1);
+            }
+            logger.info("Mensagem tratada com sucesso");
+        }
+        return message;
+    }
