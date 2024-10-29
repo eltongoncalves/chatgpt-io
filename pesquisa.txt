@@ -1,8 +1,16 @@
-Split this 146 characters long line (which is greater than 120 authorized).
+BigDecimal valorTransacao = new BigDecimal(request.getValorTransacao().toString());
+String dataTransacao = dataPagamento.toLocalDate().toString();
 
-                var transacoes = historicoTransacoesResponse.getResponseData().getListaAutorizacoes().stream().filter(
-                        autorizacao -> autorizacao.getValorFaturamento().compareTo(new BigDecimal(request.getValorTransacao().toString())) == 0 &&
-                                autorizacao.getDtTransacao().toString().equals(dataPagamento.toLocalDate().toString()) &&
-                                LocalTime.parse(autorizacao.getHrTransacao()).isAfter(horaTransacao) &&
-                                LocalTime.parse(autorizacao.getHrTransacao()).isBefore(horaTransacaoPlus)
-                ).toList();
+var transacoes = historicoTransacoesResponse.getResponseData()
+    .getListaAutorizacoes()
+    .stream()
+    .filter(autorizacao -> {
+        boolean valorIgual = autorizacao.getValorFaturamento().compareTo(valorTransacao) == 0;
+        boolean dataIgual = autorizacao.getDtTransacao().toString().equals(dataTransacao);
+        LocalTime horaTransacaoAutorizacao = LocalTime.parse(autorizacao.getHrTransacao());
+        boolean horaDepois = horaTransacaoAutorizacao.isAfter(horaTransacao);
+        boolean horaAntes = horaTransacaoAutorizacao.isBefore(horaTransacaoPlus);
+
+        return valorIgual && dataIgual && horaDepois && horaAntes;
+    })
+    .toList();
