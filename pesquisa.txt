@@ -1,2 +1,14 @@
-        "dataTransacao": "2024-10-31",
-        "horaTransacao": "16:15:41",
+catch (FornecedorRequestException e) {
+                if (e.getMessage().equals(EMPTY_LIST_FIS)) {
+                    logError("validarRetentativaFisError", Layer.INTERACTORS,
+                            "AUTORIZAÇÃO NÃO ENCONTRADA PARA A TRANSAÇÃO: ".concat(request.toString()),
+                            this.getClass(), e).log();
+                } else  throw new InternalServerErrorException(e.getMessage(),
+                        "Erro ao consultar autorizações de pagamento na FIS");
+            }catch (Exception e) {
+                logError("validarRetentativaFisError", Layer.INTERACTORS,
+                        "FALHA NA VERIFICAÇÃO DE RETENTATIVA DA FIS. ERRO: ".concat(e.getMessage()),
+                        this.getClass(), e).log();
+                throw new InternalServerErrorException(e.getMessage(),
+                        "Erro ao validar retentativa automática");
+            }
