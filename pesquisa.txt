@@ -1,9 +1,105 @@
-    protected Integer extrairInteiro(String linha, int posicaoInicial, int comprimento) {
-        String valor = extrairValor(linha, posicaoInicial, comprimento);
-        try {
-            return Objects.nonNull(valor)? Integer.parseInt(valor): null;
-        }catch (Exception e) {
-            e.printStackTrace();
-            return  null;
-        }
+brcrddcD6Corp
+brcrddcD6Conta
+brcrddcD6Contrato
+brcrddcD6Tipo
+brcrddcD6Cartao
+brcrddcD6Dtefetiva
+brcrddcD6Qtdparcela
+brcrddcD6Prazo
+brcrddcD6Taxa
+brcrddcD6Sistcalculo
+brcrddcD6Vlrfinanciado
+brcrddcD6Totjuros
+brcrddcD6Totiof
+brcrddcD6Tottarifa
+brcrddcD6Totcontrato
+brcrddcD6Totparcelas
+brcrddcD6Vlrdesconto
+brcrddcD6Totavencer
+brcrddcD6Encargopostados
+brcrddcD6Jurosapurados
+brcrddcD6Vlrbmj
+filler
+
+
+package com.grupopan.b2k.cartoes.ddc.entities;
+
+import com.grupopan.b2k.cartoes.ddc.utils.ExtracaoDadosUtil;
+
+public class ContratoParcTipo04e14Line extends ExtracaoDadosUtil {
+
+    private final String numeroConta;
+    private final String corp;
+    private final String numeroContrato;
+    private final String tipoParcelamentoContrato;
+    private final String quatroUltimosDigitosCartao;
+    private final String dataEfetivaParceladoContrato;
+    private final String totalParcelasContrato;
+    private final String prazocalculadoContrato;
+    private final String taxaJurosParceladoContrato;
+    private final String sistemaCalculoAplicadoContrato;
+    private final String valorFinanciado ;
+    private final String valorTotalJurosParcelaContrato;
+    private final String valorTotalIOFParcelaContrato;
+    private final String valorTarifa;
+    private final String valorTotalFinanciamento;
+    private final String valorTotalParcVencerSemIncidencia;
+    private final String valorDescontoCalculadoParcelasVencerContrato;
+    private final String valorTotalMenosDescontoContrato;
+    private final String encargosPostadosPlanoCredito;
+    private final String valorEncargosPlanoCreditoContrato;
+    private final String valorMaximoJurosCobradoContrato;
+
+
+    public ContratoParcTipo04e14Line(String linha) {
+        this.corp = extrairString(linha,  3);
+        this.numeroConta = extrairString(linha,  19);
+        this.numeroContrato = extrairString(linha,  13);
+        this.tipoParcelamentoContrato = extrairString(linha,  2);
+        this.quatroUltimosDigitosCartao = extrairString(linha,  4);
+        this.dataEfetivaParceladoContrato = extrairString(linha,  8);
+        this.totalParcelasContrato = extrairString(linha,  3);
+        this.prazocalculadoContrato = extrairString(linha,  5);
+        this.taxaJurosParceladoContrato = extrairString(linha,  5);
+        this.sistemaCalculoAplicadoContrato = extrairString(linha,  2);
+        this.valorFinanciado = extrairString(linha,  13);
+        this.valorTotalJurosParcelaContrato = extrairString(linha,  13);
+        this.valorTotalIOFParcelaContrato = extrairString(linha,  13);
+        this.valorTarifa = extrairString(linha,  13);
+        this.valorTotalFinanciamento = extrairString(linha,  13);
+        this.valorTotalParcVencerSemIncidencia = extrairString(linha,  13);
+        this.valorDescontoCalculadoParcelasVencerContrato = extrairString(linha, 11);
+        this.valorTotalMenosDescontoContrato = extrairString(linha, 13);
+        this.encargosPostadosPlanoCredito = extrairString(linha,  13);
+        this.valorEncargosPlanoCreditoContrato = extrairString(linha, 13);
+        this.valorMaximoJurosCobradoContrato = extrairString(linha, 13);
+        System.out.println(toString());
     }
+
+    @Override
+    public String toString() {
+        return "ContratoParcTipo04e14{" +
+                "codigo='" + corp + '\'' +
+                ", numeroConta='" + numeroConta + '\'' +
+                ", numeroContrato='" + numeroContrato + '\'' +
+                ", tipoParcelamentoContrato='" + tipoParcelamentoContrato + '\'' +
+                ", quatroUltimosDigitosCartao='" + quatroUltimosDigitosCartao + '\'' +
+                ", dataEfetivaParceladoContrato='" + dataEfetivaParceladoContrato + '\'' +
+                ", totalParcelasContrato='" + totalParcelasContrato + '\'' +
+                ", prazocalculadoContrato='" + prazocalculadoContrato + '\'' +
+                ", taxaJurosParceladoContrato='" + taxaJurosParceladoContrato + '\'' +
+                ", sistemaCalculoAplicadoContrato='" + sistemaCalculoAplicadoContrato + '\'' +
+                ", valorFinanciado='" + valorFinanciado + '\'' +
+                ", valorTotalJurosParcelaContrato='" + valorTotalJurosParcelaContrato + '\'' +
+                ", valorTotalIOFParcelaContrato='" + valorTotalIOFParcelaContrato + '\'' +
+                ", valorTarifa='" + valorTarifa + '\'' +
+                ", valorTotalFinanciamento='" + valorTotalFinanciamento + '\'' +
+                ", valorTotalParcVencerSemIncidencia='" + valorTotalParcVencerSemIncidencia + '\'' +
+                ", valorDescontoCalculadoParcelasVencerContrato='" + valorDescontoCalculadoParcelasVencerContrato + '\'' +
+                ", valorTotalMenosDescontoContrato='" + valorTotalMenosDescontoContrato + '\'' +
+                ", encargosPostadosPlanoCredito='" + encargosPostadosPlanoCredito + '\'' +
+                ", valorEncargosPlanoCreditoContrato='" + valorEncargosPlanoCreditoContrato + '\'' +
+                ", valorMaximoJurosCobradoContrato='" + valorMaximoJurosCobradoContrato + '\'' +
+                '}';
+    }
+}
