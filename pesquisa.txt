@@ -1,16 +1,3 @@
-brcrddcD7Corp
-brcrddcD7Conta
-brcrddcD7Contrato
-brcrddcD7Tipo
-brcrddcD7Numparcela
-brcrddcD7Dtvencto
-brcrddcD7Vlramortizado
-brcrddcD7Vlrjuros
-brcrddcD7Vlrprestacao
-brcrddcD7Saldonominal
-brcrddcD7Sitparcela
-filler
-
 package com.grupopan.b2k.cartoes.ddc.entities;
 
 import com.grupopan.b2k.cartoes.ddc.utils.ExtracaoDadosUtil;
@@ -20,49 +7,49 @@ import java.time.LocalDate;
 
 public class ContratoParcFormatadoPPLine extends ExtracaoDadosUtil {
 
-    private final String corp;
-    private final String numeroConta;
-    private final String contrato;
-    private final String tipo;
-    private final String numeroParcela;
-    private final LocalDate dataVencimento;
-    private final BigDecimal valorAmortizado;
-    private final BigDecimal valorJuros;
-    private final BigDecimal valorPrestacao;
-    private final BigDecimal saldoNominal;
-    private final String situacaoParcela;
+    private final String brcrddcD7Corp;
+    private final String brcrddcD7Conta;
+    private final String brcrddcD7Contrato;
+    private final String brcrddcD7Tipo;
+    private final String brcrddcD7Numparcela;
+    private final LocalDate brcrddcD7Dtvencto;
+    private final BigDecimal brcrddcD7Vlramortizado;
+    private final BigDecimal brcrddcD7Vlrjuros;
+    private final BigDecimal brcrddcD7Vlrprestacao;
+    private final BigDecimal brcrddcD7Saldonominal;
+    private final String brcrddcD7Sitparcela;
     private final String filler;
 
     public ContratoParcFormatadoPPLine(String linha) {
-        this.corp = extrairString(linha,3);
-        this.numeroConta = extrairString(linha,19);
-        this.contrato = extrairString(linha,13);
-        this.tipo = extrairString(linha,2);
-        this.numeroParcela = extrairString(linha,3);
-        this.dataVencimento = extrairData(linha,8);
-        this.valorAmortizado = extrairBigDecimal(linha,13);
-        this.valorJuros = extrairBigDecimal(linha,13);
-        this.valorPrestacao = extrairBigDecimal(linha,13);
-        this.saldoNominal = extrairBigDecimal(linha,13);
-        this.situacaoParcela = extrairString(linha,1);
-        this.filler = extrairString(linha,389);
+        this.brcrddcD7Corp = extrairString(linha, 3);
+        this.brcrddcD7Conta = extrairString(linha, 19);
+        this.brcrddcD7Contrato = extrairString(linha, 13);
+        this.brcrddcD7Tipo = extrairString(linha, 2);
+        this.brcrddcD7Numparcela = extrairString(linha, 3);
+        this.brcrddcD7Dtvencto = extrairData(linha, 8);
+        this.brcrddcD7Vlramortizado = extrairBigDecimal(linha, 13);
+        this.brcrddcD7Vlrjuros = extrairBigDecimal(linha, 13);
+        this.brcrddcD7Vlrprestacao = extrairBigDecimal(linha, 13);
+        this.brcrddcD7Saldonominal = extrairBigDecimal(linha, 13);
+        this.brcrddcD7Sitparcela = extrairString(linha, 1);
+        this.filler = extrairString(linha, 389);
         System.out.println(toString());
     }
 
     @Override
     public String toString() {
         return "ContratoParcFormatadoPP{" +
-                "corp='" + corp + '\'' +
-                ", numeroConta='" + numeroConta + '\'' +
-                ", contrato='" + contrato + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", numeroParcela='" + numeroParcela + '\'' +
-                ", dataVencimento='" + dataVencimento + '\'' +
-                ", valorAmortizado='" + valorAmortizado + '\'' +
-                ", valorJuros='" + valorJuros + '\'' +
-                ", valorPrestacao='" + valorPrestacao + '\'' +
-                ", saldoNominal='" + saldoNominal + '\'' +
-                ", situacaoParcela='" + situacaoParcela + '\'' +
+                "brcrddcD7Corp='" + brcrddcD7Corp + '\'' +
+                ", brcrddcD7Conta='" + brcrddcD7Conta + '\'' +
+                ", brcrddcD7Contrato='" + brcrddcD7Contrato + '\'' +
+                ", brcrddcD7Tipo='" + brcrddcD7Tipo + '\'' +
+                ", brcrddcD7Numparcela='" + brcrddcD7Numparcela + '\'' +
+                ", brcrddcD7Dtvencto='" + brcrddcD7Dtvencto + '\'' +
+                ", brcrddcD7Vlramortizado='" + brcrddcD7Vlramortizado + '\'' +
+                ", brcrddcD7Vlrjuros='" + brcrddcD7Vlrjuros + '\'' +
+                ", brcrddcD7Vlrprestacao='" + brcrddcD7Vlrprestacao + '\'' +
+                ", brcrddcD7Saldonominal='" + brcrddcD7Saldonominal + '\'' +
+                ", brcrddcD7Sitparcela='" + brcrddcD7Sitparcela + '\'' +
                 ", filler='" + filler + '\'' +
                 '}';
     }
