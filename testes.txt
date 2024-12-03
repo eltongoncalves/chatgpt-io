@@ -1,0 +1,33 @@
+package com.grupopan.service.cartoes.fatura.datasources;
+
+import com.grupopan.lib.cartoes.aspects.Layer;
+import com.grupopan.lib.cartoes.aspects.LogParam;
+import com.grupopan.lib.cartoes.aspects.error.LogError;
+import com.grupopan.lib.cartoes.aspects.request.LogRequestMethod;
+import com.grupopan.lib.cartoes.aspects.response.LogResponseMethod;
+import com.grupopan.service.cartoes.fatura.datasources.feign.GeradorPdfPortabilidadeClientFeign;
+import com.grupopan.service.cartoes.fatura.datasources.feign.dto.portabilidade.RequestGeradorPdfDTO;
+import com.grupopan.service.cartoes.fatura.datasources.feign.mapper.portabilidade.PdfResponseDTOMapper;
+import com.grupopan.service.cartoes.fatura.repositories.GeradorPdfPortabilidadeRepository;
+import org.springframework.stereotype.Component;
+import com.grupopan.service.cartoes.fatura.transportlayers.openapi.model.PdfResponse;
+
+@Component
+public class GeradorPdfPortabilidadeDataSource implements GeradorPdfPortabilidadeRepository {
+
+    private static final PdfResponseDTOMapper PDF_RESPONSE_DTO_MAPPER = PdfResponseDTOMapper.INSTANCE;
+    private final GeradorPdfPortabilidadeClientFeign clientFeign;
+
+    public GeradorPdfPortabilidadeDataSource(GeradorPdfPortabilidadeClientFeign clientFeign) {
+        this.clientFeign = clientFeign;
+    }
+
+    @Override
+    @LogError(layer = Layer.DATASOURCES)
+    @LogRequestMethod(layer = Layer.DATASOURCES, description = "GERAR PDF PORTABILIDADE")
+    @LogResponseMethod(layer = Layer.DATASOURCES, description = "PDF PORTABILIDADE GERADO", logReturnValue = true)
+    public PdfResponse geradorPdf( @LogParam RequestGeradorPdfDTO dto) {
+            return PDF_RESPONSE_DTO_MAPPER.map(clientFeign.geradorPdf(dto));
+    }
+
+}
