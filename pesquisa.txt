@@ -1,6 +1,27 @@
 package com.example.integration.adapter.feign.dto;
 
 import lombok.Data;
+import java.util.List;
+
+@Data
+public class RequestDTO {
+    private String nomeTitular;
+    private String cpfCnpj;
+    private String dataEmissao;
+    private double limiteTotal;
+    private double limiteDisponivel;
+    private double limiteUtilizado;
+    private CaracteristicaCreditoDTO caracteristicaCredito;
+    private List<ParcelamentoDTO> parcelamentoFatura;
+    private List<ParcelamentoDTO> parcelamentoAutomatico;
+}
+
+
+
+
+package com.example.integration.adapter.feign.dto;
+
+import lombok.Data;
 
 @Data
 public class CaracteristicaCreditoDTO {
