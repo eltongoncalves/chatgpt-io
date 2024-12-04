@@ -1,172 +1,40 @@
-package com.example.integration.adapter.feign.dto;
+package com.grupopan.service.cartoes.fatura.interactors;
 
-import lombok.Data;
-import java.util.List;
-
-@Data
-public class RequestDTO {
-    private String nomeTitular;
-    private String cpfCnpj;
-    private String dataEmissao;
-    private double limiteTotal;
-    private double limiteDisponivel;
-    private double limiteUtilizado;
-    private CaracteristicaCreditoDTO caracteristicaCredito;
-    private List<ParcelamentoDTO> parcelamentoFatura;
-    private List<ParcelamentoDTO> parcelamentoAutomatico;
-}
-
-
-
-
-package com.example.integration.adapter.feign.dto;
-
-import lombok.Data;
-
-@Data
-public class CaracteristicaCreditoDTO {
-    private String modalidade;
-    private String sistemaAmortizacao;
-    private String idContratoPortabilidade;
-    private double jurosCobrados;
-    private double jurosPendenteCobranca;
-    private double taxaJurosMensal;
-    private double taxaJurosAnualNominal;
-    private double taxaJurosAnualEfetiva;
-    private int parcelasContrato;
-    private int parcelasAbertas;
-    private String dataUltimoVencimento;
-    private double valorOriginalDivida;
-    private double saldoDevedor;
-    private String dataAtualizacao;
-}
-
-
-package com.example.integration.adapter.feign.dto;
-
-import lombok.Data;
-
-@Data
-public class ParcelamentoDTO {
-    private int numeroParcela;
-    private String dataVencimento;
-    private double principalIOF;
-    private double encargos;
-    private double valorParcela;
-    private String status;
-}
-
-package com.example.integration.adapter.feign.dto;
-
-import lombok.Data;
-
-@Data
-public class ResponseDTO {
-    private String status;
-    private String message;
-}
-
-package com.example.integration.domain;
-
-public interface GeradorPdfPort {
-    PdfResponse gerarPdf(PdfRequest request);
-}
-
-
-package com.example.integration.adapter.feign;
-
-import com.example.integration.adapter.feign.dto.RequestDTO;
-import com.example.integration.domain.GeradorPdfPort;
-import com.example.integration.domain.PdfRequest;
-import com.example.integration.domain.PdfResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.grupopan.lib.cartoes.aspects.Layer;
+import com.grupopan.lib.cartoes.aspects.LogParam;
+import com.grupopan.lib.cartoes.aspects.error.LogError;
+import com.grupopan.lib.cartoes.aspects.request.LogRequestMethod;
+import com.grupopan.lib.cartoes.aspects.response.LogResponseMethod;
+import com.grupopan.service.cartoes.fatura.datasources.feign.dto.portabilidade.RequestGeradorPdfDTO;
+import com.grupopan.service.cartoes.fatura.transportlayers.openapi.model.PdfResponse;
+import com.grupopan.service.cartoes.fatura.repositories.GeradorPdfPortabilidadeRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GeradorPdfAdapter implements GeradorPdfPort {
+public class PortabilidadeDividasUseCase {
 
-    private final GeradorPdfFeignClient feignClient;
+    private final GeradorPdfPortabilidadeRepository geradorPdfPortabilidadeRepository;
 
-    public GeradorPdfAdapter(GeradorPdfFeignClient feignClient) {
-        this.feignClient = feignClient;
+    PortabilidadeDividasUseCase(GeradorPdfPortabilidadeRepository geradorPdfPortabilidadeRepository) {
+        this.geradorPdfPortabilidadeRepository = geradorPdfPortabilidadeRepository;
     }
 
-    @Override
-    public PdfResponse gerarPdf(PdfRequest request) {
-        RequestDTO dto = mapToRequestDTO(request);
-        return mapToPdfResponse(feignClient.gerarPdf(dto));
+    @LogError(layer = Layer.INTERACTORS)
+    @LogRequestMethod(layer = Layer.INTERACTORS, description = "OBTENDO RESUMO FATURA")
+    @LogResponseMethod(layer = Layer.INTERACTORS, description = "RESUMO FATURA OBTIDO", logReturnValue = true)
+    public PdfResponse geradorPdf(@LogParam String numeroContaCartao) {
+
+        String jsonString =  "{\"nomeTitular\":\"JoãodaSilva\",\"cpfCnpj\":\"123.456.789-00\",\"dataEmissao\":\"2024-10-15\",\"limiteTotal\":10000.00,\"limiteDisponivel\":5000.00,\"limiteUtilizado\":5000.00,\"caracteristicaCredito\":{\"modalidade\":\"cartao\",\"sistemaAmortizacao\":\"Price\",\"idContratoPortabilidade\":\"123456789-000\",\"jurosCobrados\":0.05,\"jurosPendenteCobranca\":0.75,\"taxaJurosMensal\":3.98,\"taxaJurosAnualNominal\":48.00,\"taxaJurosAnualEfetiva\":60.00,\"parcelasContrato\":12,\"parcelasAbertas\":6,\"dataUltimoVencimento\":\"2025-10-15\",\"valorOriginalDivida\":10000.00,\"saldoDevedor\":5000.00,\"dataAtualizacao\":\"2024-11-18\"},\"parcelamentoFatura\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"parcelamentoAutomatico\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"saldoRotativo\":[{\"numeroParcela\":1,\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00}]}";
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            RequestGeradorPdfDTO dto = objectMapper.readValue(jsonString, RequestGeradorPdfDTO.class);
+            return  this.geradorPdfPortabilidadeRepository.geradorPdf(dto);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
-    private RequestDTO mapToRequestDTO(PdfRequest request) {
-        // Mapeamento do domínio para o DTO (pode ser automatizado com MapStruct)
-        return new RequestDTO();
-    }
 
-    private PdfResponse mapToPdfResponse(ResponseDTO response) {
-        // Mapeamento do ResponseDTO para o domínio
-        return new PdfResponse(response.getStatus(), response.getMessage());
-    }
 }
-
-
-package com.example.integration.application;
-
-import com.example.integration.domain.GeradorPdfPort;
-import com.example.integration.domain.PdfRequest;
-import com.example.integration.domain.PdfResponse;
-import org.springframework.stereotype.Service;
-
-@Service
-public class GeradorPdfService {
-
-    private final GeradorPdfPort port;
-
-    public GeradorPdfService(GeradorPdfPort port) {
-        this.port = port;
-    }
-
-    public PdfResponse gerarPdf(PdfRequest request) {
-        return port.gerarPdf(request);
-    }
-}
-
-
-package com.example.integration.configuration;
-
-import org.springframework.context.annotation.Bean;
-import feign.Logger;
-
-public class FeignConfig {
-
-    @Bean
-    Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL;
-    }
-}
-
-
-package com.example.integration.application;
-
-import com.example.integration.domain.PdfRequest;
-import com.example.integration.domain.PdfResponse;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class GeradorPdfController {
-
-    private final GeradorPdfService service;
-
-    public GeradorPdfController(GeradorPdfService service) {
-        this.service = service;
-    }
-
-    @PostMapping("/gerar-pdf")
-    public PdfResponse gerarPdf(@RequestBody PdfRequest request) {
-        return service.gerarPdf(request);
-    }
-}
-
-
-
-"{\"nomeTitular\":\"JoãodaSilva\",\"cpfCnpj\":\"123.456.789-00\",\"dataEmissao\":\"2024-10-15\",\"limiteTotal\":10000.00,\"limiteDisponivel\":5000.00,\"limiteUtilizado\":5000.00,\"caracteristicaCredito\":{\"modalidade\":\"cartao\",\"sistemaAmortizacao\":\"Price\",\"idContratoPortabilidade\":\"123456789-000\",\"jurosCobrados\":0.05,\"jurosPendenteCobranca\":0.75,\"taxaJurosMensal\":3.98,\"taxaJurosAnualNominal\":48.00,\"taxaJurosAnualEfetiva\":60.00,\"parcelasContrato\":12,\"parcelasAbertas\":6,\"dataUltimoVencimento\":\"2025-10-15\",\"valorOriginalDivida\":10000.00,\"saldoDevedor\":5000.00,\"dataAtualizacao\":\"2024-11-18\"},\"parcelamentoFatura\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"parcelamentoAutomatico\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"saldoRotativo\":[{\"numeroParcela\":1,\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00}]}"
