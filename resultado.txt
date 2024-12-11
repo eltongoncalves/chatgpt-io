@@ -531,6 +531,129 @@ public interface HeaderMapper {
 }
 
 
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class HeaderId implements Serializable {
+    private String brcrddcH0Corp;
+    private LocalDate brcrddcH0DataLote;
+    private String brcrddcH0SequenciaLote;
+
+    // Construtores, getters, setters, equals e hashCode
+    public HeaderId() {}
+
+    public HeaderId(String brcrddcH0Corp, LocalDate brcrddcH0DataLote, String brcrddcH0SequenciaLote) {
+        this.brcrddcH0Corp = brcrddcH0Corp;
+        this.brcrddcH0DataLote = brcrddcH0DataLote;
+        this.brcrddcH0SequenciaLote = brcrddcH0SequenciaLote;
+    }
+
+    // Getters e setters
+    public String getBrcrddcH0Corp() {
+        return brcrddcH0Corp;
+    }
+
+    public void setBrcrddcH0Corp(String brcrddcH0Corp) {
+        this.brcrddcH0Corp = brcrddcH0Corp;
+    }
+
+    public LocalDate getBrcrddcH0DataLote() {
+        return brcrddcH0DataLote;
+    }
+
+    public void setBrcrddcH0DataLote(LocalDate brcrddcH0DataLote) {
+        this.brcrddcH0DataLote = brcrddcH0DataLote;
+    }
+
+    public String getBrcrddcH0SequenciaLote() {
+        return brcrddcH0SequenciaLote;
+    }
+
+    public void setBrcrddcH0SequenciaLote(String brcrddcH0SequenciaLote) {
+        this.brcrddcH0SequenciaLote = brcrddcH0SequenciaLote;
+    }
+
+    // equals() e hashCode() para garantir a integridade do ID composto
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HeaderId headerId = (HeaderId) o;
+        return brcrddcH0Corp.equals(headerId.brcrddcH0Corp) &&
+               brcrddcH0DataLote.equals(headerId.brcrddcH0DataLote) &&
+               brcrddcH0SequenciaLote.equals(headerId.brcrddcH0SequenciaLote);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brcrddcH0Corp, brcrddcH0DataLote, brcrddcH0SequenciaLote);
+    }
+}
+
+
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@IdClass(HeaderId.class)
+public class Header {
+
+    @Id
+    private String brcrddcH0Corp;
+
+    @Id
+    private LocalDate brcrddcH0DataLote;
+
+    @Id
+    private String brcrddcH0SequenciaLote;
+
+    private String brcrddcH0NomeArquivo;
+    private String filler;
+
+    // Getters e setters
+    public String getBrcrddcH0Corp() {
+        return brcrddcH0Corp;
+    }
+
+    public void setBrcrddcH0Corp(String brcrddcH0Corp) {
+        this.brcrddcH0Corp = brcrddcH0Corp;
+    }
+
+    public LocalDate getBrcrddcH0DataLote() {
+        return brcrddcH0DataLote;
+    }
+
+    public void setBrcrddcH0DataLote(LocalDate brcrddcH0DataLote) {
+        this.brcrddcH0DataLote = brcrddcH0DataLote;
+    }
+
+    public String getBrcrddcH0SequenciaLote() {
+        return brcrddcH0SequenciaLote;
+    }
+
+    public void setBrcrddcH0SequenciaLote(String brcrddcH0SequenciaLote) {
+        this.brcrddcH0SequenciaLote = brcrddcH0SequenciaLote;
+    }
+
+    public String getBrcrddcH0NomeArquivo() {
+        return brcrddcH0NomeArquivo;
+    }
+
+    public void setBrcrddcH0NomeArquivo(String brcrddcH0NomeArquivo) {
+        this.brcrddcH0NomeArquivo = brcrddcH0NomeArquivo;
+    }
+
+    public String getFiller() {
+        return filler;
+    }
+
+    public void setFiller(String filler) {
+        this.filler = filler;
+    }
+}
+
+
 
 
 
