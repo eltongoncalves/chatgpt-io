@@ -1,1 +1,539 @@
-=MINÚSCULA(ESQUERDA(A1, LOCALIZAR("-", A1) - 1)) & MAIÚSCULA(MÉDIO(A1, LOCALIZAR("-", A1) + 1, LOCALIZAR("-", A1, LOCALIZAR("-", A1) + 1) - LOCALIZAR("-", A1) - 1)) & PRI.MAIÚSCULA(SUBSTITUIR(A1)
+import jakarta.persistence.*;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "header")
+public class Header {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "brcrddcH0Corp", nullable = false, length = 10)
+    private String brcrddcH0Corp;
+
+    @Column(name = "brcrddcH0DataLote", nullable = false)
+    private LocalDate brcrddcH0DataLote;
+
+    @Column(name = "brcrddcH0SequenciaLote", nullable = false, length = 10)
+    private String brcrddcH0SequenciaLote;
+
+    @Column(name = "brcrddcH0NomeArquivo", nullable = false, length = 255)
+    private String brcrddcH0NomeArquivo;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "detalhes_conta")
+public class DetalhesConta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "header_id", nullable = false)
+    private Header header;
+
+    @Column(name = "brcrddcD1Corp", nullable = false, length = 10)
+    private String brcrddcD1Corp;
+
+    @Column(name = "brcrddcD1Conta", nullable = false, length = 20)
+    private String brcrddcD1Conta;
+
+    @Column(name = "brcrddcD1Prod", length = 10)
+    private String brcrddcD1Prod;
+
+    @Column(name = "brcrddcD1Subprod", length = 10)
+    private String brcrddcD1Subprod;
+
+    @Column(name = "brcrddcD1CpfCnpj", length = 20)
+    private String brcrddcD1CpfCnpj;
+
+    @Column(name = "brcrddcD1Cartaotit", length = 10)
+    private String brcrddcD1Cartaotit;
+
+    @Column(name = "brcrddcD1Pymtduedt")
+    private LocalDate brcrddcD1Pymtduedt;
+
+    @Column(name = "brcrddcD1Vlrminvencida", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Vlrminvencida;
+
+    @Column(name = "brcrddcD1Vlrfatvencida", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Vlrfatvencida;
+
+    @Column(name = "brcrddcD1Limiteglobal", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limiteglobal;
+
+    @Column(name = "brcrddcD1Saldoglobal", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldoglobal;
+
+    @Column(name = "brcrddcD1Limitesaque", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limitesaque;
+
+    @Column(name = "brcrddcD1Saldosaque", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldosaque;
+
+    @Column(name = "brcrddcD1Limiteparc", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limiteparc;
+
+    @Column(name = "brcrddcD1Saldoparc", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldoparc;
+
+    @Column(name = "brcrddcD1Limitecredp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limitecredp;
+
+    @Column(name = "brcrddcD1Saldocredp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldocredp;
+
+    @Column(name = "brcrddcD1Multaaprop", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Multaaprop;
+
+    @Column(name = "brcrddcD1Moraaprop", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Moraaprop;
+
+    @Column(name = "brcrddcD1Descontoparcfat", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Descontoparcfat;
+
+    @Column(name = "brcrddcD1Descontoparcaut", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Descontoparcaut;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "operacao_credito_rotativo_compra")
+public class OperacaoCreditoRotativoCompra {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "detalhes_conta_id", nullable = false)
+    private DetalhesConta detalhesConta;
+
+    @Column(name = "brcrddcD2Corp", length = 10)
+    private String brcrddcD2Corp;
+
+    @Column(name = "brcrddcD2Conta", length = 20)
+    private String brcrddcD2Conta;
+
+    @Column(name = "brcrddcD2VlroriCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD2VlroriCompra;
+
+    @Column(name = "brcrddcD2SldrotCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD2SldrotCompra;
+
+    @Column(name = "brcrddcD2SldportCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD2SldportCompra;
+
+    @Column(name = "brcrddcD2Enccobmt", precision = 15, scale = 2)
+    private BigDecimal brcrddcD2Enccobmt;
+
+    @Column(name = "brcrddcD2Encapur", precision = 15, scale = 2)
+    private BigDecimal brcrddcD2Encapur;
+
+    @Column(name = "brcrddcD2Sldbmj", precision = 15, scale = 2)
+    private BigDecimal brcrddcD2Sldbmj;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "operacao_credito_rotativo_saque")
+public class OperacaoCreditoRotativoSaque {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "detalhes_conta_id", nullable = false)
+    private DetalhesConta detalhesConta;
+
+    @Column(name = "brcrddcD3Corp", length = 10)
+    private String brcrddcD3Corp;
+
+    @Column(name = "brcrddcD3Conta", length = 20)
+    private String brcrddcD3Conta;
+
+    @Column(name = "brcrddcD3VlroriCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD3VlroriCompra;
+
+    @Column(name = "brcrddcD3SldrotCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD3SldrotCompra;
+
+    @Column(name = "brcrddcD3SldportCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD3SldportCompra;
+
+    @Column(name = "brcrddcD3Enccobmt", precision = 15, scale = 2)
+    private BigDecimal brcrddcD3Enccobmt;
+
+    @Column(name = "brcrddcD3Encapur", precision = 15, scale = 2)
+    private BigDecimal brcrddcD3Encapur;
+
+    @Column(name = "brcrddcD3Sldbmj", precision = 15, scale = 2)
+    private BigDecimal brcrddcD3Sldbmj;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "parcelamento_fatura")
+public class ParcelamentoFatura {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "detalhes_conta_id", nullable = false)
+    private DetalhesConta detalhesConta;
+
+    @Column(name = "brcrddcD4Corp", length = 10)
+    private String brcrddcD4Corp;
+
+    @Column(name = "brcrddcD4Conta", length = 20)
+    private String brcrddcD4Conta;
+
+    @Column(name = "brcrddcD4VlroriCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD4VlroriCompra;
+
+    @Column(name = "brcrddcD4SldrotCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD4SldrotCompra;
+
+    @Column(name = "brcrddcD4SldportCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD4SldportCompra;
+
+    @Column(name = "brcrddcD4Enccobmt", precision = 15, scale = 2)
+    private BigDecimal brcrddcD4Enccobmt;
+
+    @Column(name = "brcrddcD4Encapur", precision = 15, scale = 2)
+    private BigDecimal brcrddcD4Encapur;
+
+    @Column(name = "brcrddcD4Sldbmj", precision = 15, scale = 2)
+    private BigDecimal brcrddcD4Sldbmj;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "parcelamento_automatico")
+public class ParcelamentoAutomatico {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "detalhes_conta_id", nullable = false)
+    private DetalhesConta detalhesConta;
+
+    @Column(name = "brcrddcD5Corp", length = 10)
+    private String brcrddcD5Corp;
+
+    @Column(name = "brcrddcD5Conta", length = 20)
+    private String brcrddcD5Conta;
+
+    @Column(name = "brcrddcD5VlroriCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5VlroriCompra;
+
+    @Column(name = "brcrddcD5SldrotCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5SldrotCompra;
+
+    @Column(name = "brcrddcD5SldportCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5SldportCompra;
+
+    @Column(name = "brcrddcD5Enccobmt", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5Enccobmt;
+
+    @Column(name = "brcrddcD5Encapur", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5Encapur;
+
+    @Column(name = "brcrddcD5Sldbmj", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5Sldbmj;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+
+@Entity
+@Table(name = "taxas_rotativo")
+public class TaxasRotativo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "detalhes_conta_id", nullable = false)
+    private DetalhesConta detalhesConta;
+
+    @Column(name = "brcrddcD8Corp", length = 10)
+    private String brcrddcD8Corp;
+
+    @Column(name = "brcrddcD8Conta", length = 20)
+    private String brcrddcD8Conta;
+
+    @Column(name = "brcrddcD8Taxrot", precision = 15, scale = 2)
+    private BigDecimal brcrddcD8Taxrot;
+
+    @Column(name = "brcrddcD8Taxrotp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD8Taxrotp;
+
+    @Column(name = "brcrddcD8Taxrotano", precision = 15, scale = 2)
+    private BigDecimal brcrddcD8Taxrotano;
+
+    @Column(name = "brcrddcD8Taxsaq", precision = 15, scale = 2)
+    private BigDecimal brcrddcD8Taxsaq;
+
+    @Column(name = "brcrddcD8Taxsaqp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD8Taxsaqp;
+
+    @Column(name = "brcrddcD8Taxsaqano", precision = 15, scale = 2)
+    private BigDecimal brcrddcD8Taxsaqano;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    // Getters and Setters
+}
+
+
+
+#############################################################
+
+
+package com.example.hexagonal.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Header {
+    private Long id;
+    private String corp;
+    private String dataLote;
+    private String sequenciaLote;
+    private String nomeArquivo;
+    private String filler;
+}
+
+
+
+package com.example.hexagonal.application.port.in;
+
+import com.example.hexagonal.domain.Header;
+
+import java.util.List;
+
+public interface HeaderUseCase {
+    Header createHeader(Header header);
+    List<Header> getAllHeaders();
+    Header getHeaderById(Long id);
+    Header updateHeader(Long id, Header header);
+    void deleteHeader(Long id);
+}
+
+package com.example.hexagonal.application.port.out;
+
+import com.example.hexagonal.domain.Header;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface HeaderRepository {
+    Header save(Header header);
+    List<Header> findAll();
+    Optional<Header> findById(Long id);
+    void deleteById(Long id);
+}
+
+
+package com.example.hexagonal.application.service;
+
+import com.example.hexagonal.application.port.in.HeaderUseCase;
+import com.example.hexagonal.application.port.out.HeaderRepository;
+import com.example.hexagonal.domain.Header;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class HeaderService implements HeaderUseCase {
+
+    private final HeaderRepository repository;
+
+    @Override
+    public Header createHeader(Header header) {
+        return repository.save(header);
+    }
+
+    @Override
+    public List<Header> getAllHeaders() {
+        return repository.findAll();
+    }
+
+    @Override
+    public Header getHeaderById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Header not found"));
+    }
+
+    @Override
+    public Header updateHeader(Long id, Header header) {
+        Header existing = getHeaderById(id);
+        existing.setCorp(header.getCorp());
+        existing.setDataLote(header.getDataLote());
+        existing.setSequenciaLote(header.getSequenciaLote());
+        existing.setNomeArquivo(header.getNomeArquivo());
+        return repository.save(existing);
+    }
+
+    @Override
+    public void deleteHeader(Long id) {
+        repository.deleteById(id);
+    }
+}
+
+
+
+package com.example.hexagonal.infrastructure.adapter.out;
+
+import com.example.hexagonal.application.port.out.HeaderRepository;
+import com.example.hexagonal.domain.Header;
+import com.example.hexagonal.infrastructure.entity.HeaderEntity;
+import com.example.hexagonal.infrastructure.mapper.HeaderMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+@RequiredArgsConstructor
+public class HeaderRepositoryImpl implements HeaderRepository {
+
+    private final SpringDataHeaderRepository jpaRepository;
+    private final HeaderMapper mapper;
+
+    @Override
+    public Header save(Header header) {
+        HeaderEntity entity = mapper.toEntity(header);
+        return mapper.toDomain(jpaRepository.save(entity));
+    }
+
+    @Override
+    public List<Header> findAll() {
+        return mapper.toDomainList(jpaRepository.findAll());
+    }
+
+    @Override
+    public Optional<Header> findById(Long id) {
+        return jpaRepository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        jpaRepository.deleteById(id);
+    }
+}
+
+
+
+
+package com.example.hexagonal.infrastructure.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "header")
+public class HeaderEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String corp;
+    private String dataLote;
+    private String sequenciaLote;
+    private String nomeArquivo;
+    private String filler;
+}
+
+
+
+package com.example.hexagonal.infrastructure.mapper;
+
+import com.example.hexagonal.domain.Header;
+import com.example.hexagonal.infrastructure.entity.HeaderEntity;
+import org.mapstruct.Mapper;
+
+import java.util.List;
+
+@Mapper(componentModel = "spring")
+public interface HeaderMapper {
+    Header toDomain(HeaderEntity entity);
+    HeaderEntity toEntity(Header domain);
+    List<Header> toDomainList(List<HeaderEntity> entities);
+}
+
+
+
+
+
+
+
+
