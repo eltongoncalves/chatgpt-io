@@ -654,6 +654,29 @@ public class Header {
 }
 
 
+databaseChangeLog:
+  - changeSet:
+      id: create-header-table
+      author: your_name
+      changes:
+        - createTable:
+            tableName: header
+            columns:
+              - column:
+                  name: brcrddcH0Corp
+                  type: VARCHAR(3)
+              - column:
+                  name: brcrddcH0DataLote
+                  type: DATE
+              - column:
+                  name: brcrddcH0SequenciaLote
+                  type: VARCHAR(6)
+              - column:
+                  name: brcrddcH0NomeArquivo
+                  type: VARCHAR(255)
+              - column:
+                  name: filler
+                  type: VARCHAR(255)
 
 
 
