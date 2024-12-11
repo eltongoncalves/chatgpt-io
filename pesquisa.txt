@@ -1,40 +1,132 @@
-package com.grupopan.service.cartoes.fatura.interactors;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.grupopan.lib.cartoes.aspects.Layer;
-import com.grupopan.lib.cartoes.aspects.LogParam;
-import com.grupopan.lib.cartoes.aspects.error.LogError;
-import com.grupopan.lib.cartoes.aspects.request.LogRequestMethod;
-import com.grupopan.lib.cartoes.aspects.response.LogResponseMethod;
-import com.grupopan.service.cartoes.fatura.datasources.feign.dto.portabilidade.RequestGeradorPdfDTO;
-import com.grupopan.service.cartoes.fatura.transportlayers.openapi.model.PdfResponse;
-import com.grupopan.service.cartoes.fatura.repositories.GeradorPdfPortabilidadeRepository;
-import org.springframework.stereotype.Component;
-
-@Component
-public class PortabilidadeDividasUseCase {
-
-    private final GeradorPdfPortabilidadeRepository geradorPdfPortabilidadeRepository;
-
-    PortabilidadeDividasUseCase(GeradorPdfPortabilidadeRepository geradorPdfPortabilidadeRepository) {
-        this.geradorPdfPortabilidadeRepository = geradorPdfPortabilidadeRepository;
+{
+    "header": {
+      "brcrddcH0Corp": "015",
+      "brcrddcH0DataLote": "2024-10-28",
+      "brcrddcH0SequenciaLote": "000030",
+      "brcrddcH0NomeArquivo": "ARQUIVO DDC DEMONSTRATIVO DETA",
+      "filler": null
+    },
+    "detalhesConta": {
+      "brcrddcD1Corp": "015",
+      "brcrddcD1Conta": "0002234610000039644",
+      "brcrddcD1Prod": "MII",
+      "brcrddcD1Subprod": "001",
+      "brcrddcD1CpfCnpj": "00088611614305",
+      "brcrddcD1Cartaotit": "0923",
+      "brcrddcD1Pymtduedt": "2024-10-12",
+      "brcrddcD1Vlrminvencida": 1041,
+      "brcrddcD1Vlrfatvencida": 690000010,
+      "brcrddcD1Limiteglobal": 416900000,
+      "brcrddcD1Saldoglobal": 100000,
+      "brcrddcD1Limitesaque": 104069000,
+      "brcrddcD1Saldosaque": 0,
+      "brcrddcD1Limiteparc": 800,
+      "brcrddcD1Saldoparc": 0,
+      "brcrddcD1Limitecredp": 10,
+      "brcrddcD1Saldocredp": 0,
+      "brcrddcD1Multaaprop": 0,
+      "brcrddcD1Moraaprop": 0,
+      "brcrddcD1Descontoparcfat": 0,
+      "brcrddcD1Descontoparcaut": 0,
+      "filler": "0000000000"
+    },
+    "operacaoCreditoRotativoCompra": {
+      "brcrddcD2Corp": "015",
+      "brcrddcD2Conta": "0002234610000039644",
+      "brcrddcD2VlroriCompra": 0,
+      "brcrddcD2SldrotCompra": 0,
+      "brcrddcD2SldportCompra": 0,
+      "brcrddcD2Enccobmt": 0,
+      "brcrddcD2Encapur": 0,
+      "brcrddcD2Sldbmj": 0,
+      "filler": "000000000000"
+    },
+    "operacaoCreditoRotativoSaque": {
+      "brcrddcD3Corp": "015",
+      "brcrddcD3Conta": "0002234610000039644",
+      "brcrddcD3VlroriCompra": 0,
+      "brcrddcD3SldrotCompra": 0,
+      "brcrddcD3SldportCompra": 0,
+      "brcrddcD3Enccobmt": 0,
+      "brcrddcD3Encapur": 0,
+      "brcrddcD3Sldbmj": 0,
+      "filler": "000000000000"
+    },
+    "parcelamentoFatura": {
+      "brcrddcD4Corp": "015",
+      "brcrddcD4Conta": "0002234610000039644",
+      "brcrddcD4VlroriCompra": 0,
+      "brcrddcD4SldrotCompra": 0,
+      "brcrddcD4SldportCompra": 0,
+      "brcrddcD4Enccobmt": 0,
+      "brcrddcD4Encapur": 0,
+      "brcrddcD4Sldbmj": 0,
+      "filler": "000000000000"
+    },
+    "parcelamentoAutomatico": {
+      "brcrddcD5Corp": "015",
+      "brcrddcD5Conta": "0002234610000039644",
+      "brcrddcD5VlroriCompra": 0,
+      "brcrddcD5SldrotCompra": 0,
+      "brcrddcD5SldportCompra": 0,
+      "brcrddcD5Enccobmt": 0,
+      "brcrddcD5Encapur": 0,
+      "brcrddcD5Sldbmj": 0,
+      "filler": "000000000000"
+    },
+    "contratoParcTipo04e14": {
+      "brcrddcD6Conta": "0002234610000039644",
+      "brcrddcD6Corp": "015",
+      "brcrddcD6Contrato": "0000000000000",
+      "brcrddcD6Tipo": null,
+      "brcrddcD6Cartao": null,
+      "brcrddcD6Dtefetiva": "00000000",
+      "brcrddcD6Qtdparcela": "000",
+      "brcrddcD6Prazo": "00000",
+      "brcrddcD6Taxa": "00000",
+      "brcrddcD6Sistcalculo": "00",
+      "brcrddcD6Vlrfinanciado": "0000000000000",
+      "brcrddcD6Totjuros": "0000000000000",
+      "brcrddcD6Totiof": "0000000000000",
+      "brcrddcD6Tottarifa": "0000000000000",
+      "brcrddcD6Totcontrato": "0000000000000",
+      "brcrddcD6Totparcelas": "0000000000000",
+      "brcrddcD6Vlrdesconto": "00000000000",
+      "brcrddcD6Totavencer": "0000000000000",
+      "brcrddcD6Encargopostados": "0000000000000",
+      "brcrddcD6Jurosapurados": "0000000000000",
+      "brcrddcD6Vlrbmj": "0000000000000",
+      "filler": "00000000000000000000000000"
+    },
+    "contratoParcFormatadoPP": {
+      "brcrddcD7Corp": "015",
+      "brcrddcD7Conta": "0002234610000039644",
+      "brcrddcD7Contrato": "0000000000000",
+      "brcrddcD7Tipo": null,
+      "brcrddcD7Numparcela": "000",
+      "brcrddcD7Dtvencto": null,
+      "brcrddcD7Vlramortizado": 0,
+      "brcrddcD7Vlrjuros": 0,
+      "brcrddcD7Vlrprestacao": 0,
+      "brcrddcD7Saldonominal": 0,
+      "brcrddcD7Sitparcela": "0",
+      "filler": "0000000"
+    },
+    "taxasRotativo": {
+      "brcrddcD8Corp": "015",
+      "brcrddcD8Conta": "0002234610000039644",
+      "brcrddcD8Taxrot": 19,
+      "brcrddcD8Taxrotp": 49000,
+      "brcrddcD8Taxrotano": 194,
+      "brcrddcD8Taxsaq": 90000,
+      "brcrddcD8Taxsaqp": 74718,
+      "brcrddcD8Taxsaqano": 0,
+      "brcrddcD8Pfatuam": 19490,
+      "brcrddcD8Pfmppam": 1,
+      "brcrddcD8Pfatuaa": 94900,
+      "brcrddcD8Paratuam": 747,
+      "brcrddcD8Parmppam": 18000,
+      "brcrddcD8Paratuaa": 149,
+      "filler": "900000149900004344600000149900000149900004344600"
     }
-
-    @LogError(layer = Layer.INTERACTORS)
-    @LogRequestMethod(layer = Layer.INTERACTORS, description = "OBTENDO RESUMO FATURA")
-    @LogResponseMethod(layer = Layer.INTERACTORS, description = "RESUMO FATURA OBTIDO", logReturnValue = true)
-    public PdfResponse geradorPdf(@LogParam String numeroContaCartao) {
-
-        String jsonString =  "{\"nomeTitular\":\"JoãodaSilva\",\"cpfCnpj\":\"123.456.789-00\",\"dataEmissao\":\"2024-10-15\",\"limiteTotal\":10000.00,\"limiteDisponivel\":5000.00,\"limiteUtilizado\":5000.00,\"caracteristicaCredito\":{\"modalidade\":\"cartao\",\"sistemaAmortizacao\":\"Price\",\"idContratoPortabilidade\":\"123456789-000\",\"jurosCobrados\":0.05,\"jurosPendenteCobranca\":0.75,\"taxaJurosMensal\":3.98,\"taxaJurosAnualNominal\":48.00,\"taxaJurosAnualEfetiva\":60.00,\"parcelasContrato\":12,\"parcelasAbertas\":6,\"dataUltimoVencimento\":\"2025-10-15\",\"valorOriginalDivida\":10000.00,\"saldoDevedor\":5000.00,\"dataAtualizacao\":\"2024-11-18\"},\"parcelamentoFatura\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"parcelamentoAutomatico\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"saldoRotativo\":[{\"numeroParcela\":1,\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00}]}";
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            RequestGeradorPdfDTO dto = objectMapper.readValue(jsonString, RequestGeradorPdfDTO.class);
-            return  this.geradorPdfPortabilidadeRepository.geradorPdf(dto);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-
-}
+  }
