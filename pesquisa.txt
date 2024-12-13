@@ -1,132 +1,322 @@
-{
-    "header": {
-      "brcrddcH0Corp": "015",
-      "brcrddcH0DataLote": "2024-10-28",
-      "brcrddcH0SequenciaLote": "000030",
-      "brcrddcH0NomeArquivo": "ARQUIVO DDC DEMONSTRATIVO DETA",
-      "filler": null
-    },
-    "detalhesConta": {
-      "brcrddcD1Corp": "015",
-      "brcrddcD1Conta": "0002234610000039644",
-      "brcrddcD1Prod": "MII",
-      "brcrddcD1Subprod": "001",
-      "brcrddcD1CpfCnpj": "00088611614305",
-      "brcrddcD1Cartaotit": "0923",
-      "brcrddcD1Pymtduedt": "2024-10-12",
-      "brcrddcD1Vlrminvencida": 1041,
-      "brcrddcD1Vlrfatvencida": 690000010,
-      "brcrddcD1Limiteglobal": 416900000,
-      "brcrddcD1Saldoglobal": 100000,
-      "brcrddcD1Limitesaque": 104069000,
-      "brcrddcD1Saldosaque": 0,
-      "brcrddcD1Limiteparc": 800,
-      "brcrddcD1Saldoparc": 0,
-      "brcrddcD1Limitecredp": 10,
-      "brcrddcD1Saldocredp": 0,
-      "brcrddcD1Multaaprop": 0,
-      "brcrddcD1Moraaprop": 0,
-      "brcrddcD1Descontoparcfat": 0,
-      "brcrddcD1Descontoparcaut": 0,
-      "filler": "0000000000"
-    },
-    "operacaoCreditoRotativoCompra": {
-      "brcrddcD2Corp": "015",
-      "brcrddcD2Conta": "0002234610000039644",
-      "brcrddcD2VlroriCompra": 0,
-      "brcrddcD2SldrotCompra": 0,
-      "brcrddcD2SldportCompra": 0,
-      "brcrddcD2Enccobmt": 0,
-      "brcrddcD2Encapur": 0,
-      "brcrddcD2Sldbmj": 0,
-      "filler": "000000000000"
-    },
-    "operacaoCreditoRotativoSaque": {
-      "brcrddcD3Corp": "015",
-      "brcrddcD3Conta": "0002234610000039644",
-      "brcrddcD3VlroriCompra": 0,
-      "brcrddcD3SldrotCompra": 0,
-      "brcrddcD3SldportCompra": 0,
-      "brcrddcD3Enccobmt": 0,
-      "brcrddcD3Encapur": 0,
-      "brcrddcD3Sldbmj": 0,
-      "filler": "000000000000"
-    },
-    "parcelamentoFatura": {
-      "brcrddcD4Corp": "015",
-      "brcrddcD4Conta": "0002234610000039644",
-      "brcrddcD4VlroriCompra": 0,
-      "brcrddcD4SldrotCompra": 0,
-      "brcrddcD4SldportCompra": 0,
-      "brcrddcD4Enccobmt": 0,
-      "brcrddcD4Encapur": 0,
-      "brcrddcD4Sldbmj": 0,
-      "filler": "000000000000"
-    },
-    "parcelamentoAutomatico": {
-      "brcrddcD5Corp": "015",
-      "brcrddcD5Conta": "0002234610000039644",
-      "brcrddcD5VlroriCompra": 0,
-      "brcrddcD5SldrotCompra": 0,
-      "brcrddcD5SldportCompra": 0,
-      "brcrddcD5Enccobmt": 0,
-      "brcrddcD5Encapur": 0,
-      "brcrddcD5Sldbmj": 0,
-      "filler": "000000000000"
-    },
-    "contratoParcTipo04e14": {
-      "brcrddcD6Conta": "0002234610000039644",
-      "brcrddcD6Corp": "015",
-      "brcrddcD6Contrato": "0000000000000",
-      "brcrddcD6Tipo": null,
-      "brcrddcD6Cartao": null,
-      "brcrddcD6Dtefetiva": "00000000",
-      "brcrddcD6Qtdparcela": "000",
-      "brcrddcD6Prazo": "00000",
-      "brcrddcD6Taxa": "00000",
-      "brcrddcD6Sistcalculo": "00",
-      "brcrddcD6Vlrfinanciado": "0000000000000",
-      "brcrddcD6Totjuros": "0000000000000",
-      "brcrddcD6Totiof": "0000000000000",
-      "brcrddcD6Tottarifa": "0000000000000",
-      "brcrddcD6Totcontrato": "0000000000000",
-      "brcrddcD6Totparcelas": "0000000000000",
-      "brcrddcD6Vlrdesconto": "00000000000",
-      "brcrddcD6Totavencer": "0000000000000",
-      "brcrddcD6Encargopostados": "0000000000000",
-      "brcrddcD6Jurosapurados": "0000000000000",
-      "brcrddcD6Vlrbmj": "0000000000000",
-      "filler": "00000000000000000000000000"
-    },
-    "contratoParcFormatadoPP": {
-      "brcrddcD7Corp": "015",
-      "brcrddcD7Conta": "0002234610000039644",
-      "brcrddcD7Contrato": "0000000000000",
-      "brcrddcD7Tipo": null,
-      "brcrddcD7Numparcela": "000",
-      "brcrddcD7Dtvencto": null,
-      "brcrddcD7Vlramortizado": 0,
-      "brcrddcD7Vlrjuros": 0,
-      "brcrddcD7Vlrprestacao": 0,
-      "brcrddcD7Saldonominal": 0,
-      "brcrddcD7Sitparcela": "0",
-      "filler": "0000000"
-    },
-    "taxasRotativo": {
-      "brcrddcD8Corp": "015",
-      "brcrddcD8Conta": "0002234610000039644",
-      "brcrddcD8Taxrot": 19,
-      "brcrddcD8Taxrotp": 49000,
-      "brcrddcD8Taxrotano": 194,
-      "brcrddcD8Taxsaq": 90000,
-      "brcrddcD8Taxsaqp": 74718,
-      "brcrddcD8Taxsaqano": 0,
-      "brcrddcD8Pfatuam": 19490,
-      "brcrddcD8Pfmppam": 1,
-      "brcrddcD8Pfatuaa": 94900,
-      "brcrddcD8Paratuam": 747,
-      "brcrddcD8Parmppam": 18000,
-      "brcrddcD8Paratuaa": 149,
-      "filler": "900000149900004344600000149900000149900004344600"
+databaseChangeLog:
+  - changeSet:
+      id: 13122024-create-table-detalhes-portabilidade
+      author: elton.goncalves
+      changes:
+        - createTable:
+            tableName: DETALHES_CONTA_PORTABILIDADE
+            columns:
+              - column:
+                  name: ID
+                  type: varchar(255)
+                  autoIncrement: false
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: PK_DETALHES_CONTA_PORTABILIDADE
+              - column:
+                  name: brcrddcH0Corp
+                  type: VARCHAR(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brcrddcH0DataLote
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brcrddcH0SequenciaLote
+                  type: varchar(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brcrddcH0NomeArquivo
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: filler
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+
+
+
+
+package com.grupopan.service.cartoes.fatura.datasources.database.model.portabilidade;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "DETALHES_CONTA_PORTABILIDADE")
+public class DetalhesContaEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "header_id", nullable = false)
+    private HeaderEntity header;
+
+    @Column(name = "brcrddcD1Corp", nullable = false, length = 10)
+    private String brcrddcD1Corp;
+
+    @Column(name = "brcrddcD1Conta", nullable = false, length = 20)
+    private String brcrddcD1Conta;
+
+    @Column(name = "brcrddcD1Prod", length = 10)
+    private String brcrddcD1Prod;
+
+    @Column(name = "brcrddcD1Subprod", length = 10)
+    private String brcrddcD1Subprod;
+
+    @Column(name = "brcrddcD1CpfCnpj", length = 20)
+    private String brcrddcD1CpfCnpj;
+
+    @Column(name = "brcrddcD1Cartaotit", length = 10)
+    private String brcrddcD1Cartaotit;
+
+    @Column(name = "brcrddcD1Pymtduedt")
+    private String brcrddcD1Pymtduedt;
+
+    @Column(name = "brcrddcD1Vlrminvencida", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Vlrminvencida;
+
+    @Column(name = "brcrddcD1Vlrfatvencida", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Vlrfatvencida;
+
+    @Column(name = "brcrddcD1Limiteglobal", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limiteglobal;
+
+    @Column(name = "brcrddcD1Saldoglobal", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldoglobal;
+
+    @Column(name = "brcrddcD1Limitesaque", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limitesaque;
+
+    @Column(name = "brcrddcD1Saldosaque", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldosaque;
+
+    @Column(name = "brcrddcD1Limiteparc", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limiteparc;
+
+    @Column(name = "brcrddcD1Saldoparc", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldoparc;
+
+    @Column(name = "brcrddcD1Limitecredp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limitecredp;
+
+    @Column(name = "brcrddcD1Saldocredp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldocredp;
+
+    @Column(name = "brcrddcD1Multaaprop", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Multaaprop;
+
+    @Column(name = "brcrddcD1Moraaprop", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Moraaprop;
+
+    @Column(name = "brcrddcD1Descontoparcfat", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Descontoparcfat;
+
+    @Column(name = "brcrddcD1Descontoparcaut", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Descontoparcaut;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    public Long getId() {
+        return id;
     }
-  }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public HeaderEntity getHeader() {
+        return header;
+    }
+
+    public void setHeader(HeaderEntity header) {
+        this.header = header;
+    }
+
+    public String getBrcrddcD1Corp() {
+        return brcrddcD1Corp;
+    }
+
+    public void setBrcrddcD1Corp(String brcrddcD1Corp) {
+        this.brcrddcD1Corp = brcrddcD1Corp;
+    }
+
+    public String getBrcrddcD1Conta() {
+        return brcrddcD1Conta;
+    }
+
+    public void setBrcrddcD1Conta(String brcrddcD1Conta) {
+        this.brcrddcD1Conta = brcrddcD1Conta;
+    }
+
+    public String getBrcrddcD1Prod() {
+        return brcrddcD1Prod;
+    }
+
+    public void setBrcrddcD1Prod(String brcrddcD1Prod) {
+        this.brcrddcD1Prod = brcrddcD1Prod;
+    }
+
+    public String getBrcrddcD1Subprod() {
+        return brcrddcD1Subprod;
+    }
+
+    public void setBrcrddcD1Subprod(String brcrddcD1Subprod) {
+        this.brcrddcD1Subprod = brcrddcD1Subprod;
+    }
+
+    public String getBrcrddcD1CpfCnpj() {
+        return brcrddcD1CpfCnpj;
+    }
+
+    public void setBrcrddcD1CpfCnpj(String brcrddcD1CpfCnpj) {
+        this.brcrddcD1CpfCnpj = brcrddcD1CpfCnpj;
+    }
+
+    public String getBrcrddcD1Cartaotit() {
+        return brcrddcD1Cartaotit;
+    }
+
+    public void setBrcrddcD1Cartaotit(String brcrddcD1Cartaotit) {
+        this.brcrddcD1Cartaotit = brcrddcD1Cartaotit;
+    }
+
+    public String getBrcrddcD1Pymtduedt() {
+        return brcrddcD1Pymtduedt;
+    }
+
+    public void setBrcrddcD1Pymtduedt(String brcrddcD1Pymtduedt) {
+        this.brcrddcD1Pymtduedt = brcrddcD1Pymtduedt;
+    }
+
+    public BigDecimal getBrcrddcD1Vlrminvencida() {
+        return brcrddcD1Vlrminvencida;
+    }
+
+    public void setBrcrddcD1Vlrminvencida(BigDecimal brcrddcD1Vlrminvencida) {
+        this.brcrddcD1Vlrminvencida = brcrddcD1Vlrminvencida;
+    }
+
+    public BigDecimal getBrcrddcD1Vlrfatvencida() {
+        return brcrddcD1Vlrfatvencida;
+    }
+
+    public void setBrcrddcD1Vlrfatvencida(BigDecimal brcrddcD1Vlrfatvencida) {
+        this.brcrddcD1Vlrfatvencida = brcrddcD1Vlrfatvencida;
+    }
+
+    public BigDecimal getBrcrddcD1Limiteglobal() {
+        return brcrddcD1Limiteglobal;
+    }
+
+    public void setBrcrddcD1Limiteglobal(BigDecimal brcrddcD1Limiteglobal) {
+        this.brcrddcD1Limiteglobal = brcrddcD1Limiteglobal;
+    }
+
+    public BigDecimal getBrcrddcD1Saldoglobal() {
+        return brcrddcD1Saldoglobal;
+    }
+
+    public void setBrcrddcD1Saldoglobal(BigDecimal brcrddcD1Saldoglobal) {
+        this.brcrddcD1Saldoglobal = brcrddcD1Saldoglobal;
+    }
+
+    public BigDecimal getBrcrddcD1Limitesaque() {
+        return brcrddcD1Limitesaque;
+    }
+
+    public void setBrcrddcD1Limitesaque(BigDecimal brcrddcD1Limitesaque) {
+        this.brcrddcD1Limitesaque = brcrddcD1Limitesaque;
+    }
+
+    public BigDecimal getBrcrddcD1Saldosaque() {
+        return brcrddcD1Saldosaque;
+    }
+
+    public void setBrcrddcD1Saldosaque(BigDecimal brcrddcD1Saldosaque) {
+        this.brcrddcD1Saldosaque = brcrddcD1Saldosaque;
+    }
+
+    public BigDecimal getBrcrddcD1Limiteparc() {
+        return brcrddcD1Limiteparc;
+    }
+
+    public void setBrcrddcD1Limiteparc(BigDecimal brcrddcD1Limiteparc) {
+        this.brcrddcD1Limiteparc = brcrddcD1Limiteparc;
+    }
+
+    public BigDecimal getBrcrddcD1Saldoparc() {
+        return brcrddcD1Saldoparc;
+    }
+
+    public void setBrcrddcD1Saldoparc(BigDecimal brcrddcD1Saldoparc) {
+        this.brcrddcD1Saldoparc = brcrddcD1Saldoparc;
+    }
+
+    public BigDecimal getBrcrddcD1Limitecredp() {
+        return brcrddcD1Limitecredp;
+    }
+
+    public void setBrcrddcD1Limitecredp(BigDecimal brcrddcD1Limitecredp) {
+        this.brcrddcD1Limitecredp = brcrddcD1Limitecredp;
+    }
+
+    public BigDecimal getBrcrddcD1Saldocredp() {
+        return brcrddcD1Saldocredp;
+    }
+
+    public void setBrcrddcD1Saldocredp(BigDecimal brcrddcD1Saldocredp) {
+        this.brcrddcD1Saldocredp = brcrddcD1Saldocredp;
+    }
+
+    public BigDecimal getBrcrddcD1Multaaprop() {
+        return brcrddcD1Multaaprop;
+    }
+
+    public void setBrcrddcD1Multaaprop(BigDecimal brcrddcD1Multaaprop) {
+        this.brcrddcD1Multaaprop = brcrddcD1Multaaprop;
+    }
+
+    public BigDecimal getBrcrddcD1Moraaprop() {
+        return brcrddcD1Moraaprop;
+    }
+
+    public void setBrcrddcD1Moraaprop(BigDecimal brcrddcD1Moraaprop) {
+        this.brcrddcD1Moraaprop = brcrddcD1Moraaprop;
+    }
+
+    public BigDecimal getBrcrddcD1Descontoparcfat() {
+        return brcrddcD1Descontoparcfat;
+    }
+
+    public void setBrcrddcD1Descontoparcfat(BigDecimal brcrddcD1Descontoparcfat) {
+        this.brcrddcD1Descontoparcfat = brcrddcD1Descontoparcfat;
+    }
+
+    public BigDecimal getBrcrddcD1Descontoparcaut() {
+        return brcrddcD1Descontoparcaut;
+    }
+
+    public void setBrcrddcD1Descontoparcaut(BigDecimal brcrddcD1Descontoparcaut) {
+        this.brcrddcD1Descontoparcaut = brcrddcD1Descontoparcaut;
+    }
+
+    public String getFiller() {
+        return filler;
+    }
+
+    public void setFiller(String filler) {
+        this.filler = filler;
+    }
+}
