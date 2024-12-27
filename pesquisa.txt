@@ -1,2 +1,130 @@
-"{\"nomeTitular\":\"JoãodaSilva\",\"cpfCnpj\":\"123.456.789-00\",\"dataEmissao\":\"2024-10-15\",\"limiteTotal\":10000.00,\"limiteDisponivel\":5000.00,\"limiteUtilizado\":5000.00,\"caracteristicaCredito\":{\"modalidade\":\"cartao\",\"sistemaAmortizacao\":\"Price\",\"idContratoPortabilidade\":\"123456789-000\",\"jurosCobrados\":0.05,\"jurosPendenteCobranca\":0.75,\"taxaJurosMensal\":3.98,\"taxaJurosAnualNominal\":48.00,\"taxaJurosAnualEfetiva\":60.00,\"parcelasContrato\":12,\"parcelasAbertas\":6,\"dataUltimoVencimento\":\"2025-10-15\",\"valorOriginalDivida\":10000.00,\"saldoDevedor\":5000.00,\"dataAtualizacao\":\"2024-11-18\"},\"parcelamentoFatura\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"parcelamentoAutomatico\":[{\"numeroParcela\":1,\"dataVencimento\":\"2024-10-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Pago\"},{\"numeroParcela\":2,\"dataVencimento\":\"2024-11-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Atraso\"},{\"numeroParcela\":3,\"dataVencimento\":\"2024-12-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":4,\"dataVencimento\":\"2025-01-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":5,\"dataVencimento\":\"2025-02-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":6,\"dataVencimento\":\"2025-03-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":7,\"dataVencimento\":\"2025-04-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":8,\"dataVencimento\":\"2025-05-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":9,\"dataVencimento\":\"2025-06-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":10,\"dataVencimento\":\"2025-07-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":11,\"dataVencimento\":\"2025-08-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"},{\"numeroParcela\":12,\"dataVencimento\":\"2025-09-15\",\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00,\"status\":\"Aberta\"}],\"saldoRotativo\":[{\"numeroParcela\":1,\"principalIOF\":25.00,\"encargos\":11.00,\"valorParcela\":36.00}]}";
-    
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class ContratoCredito {
+    @JsonProperty("nomeTitular")
+    private String nomeTitular;
+
+    @JsonProperty("cpfCnpj")
+    private String cpfCnpj;
+
+    @JsonProperty("dataEmissao")
+    private String dataEmissao;
+
+    @JsonProperty("limiteTotal")
+    private Double limiteTotal;
+
+    @JsonProperty("limiteDisponivel")
+    private Double limiteDisponivel;
+
+    @JsonProperty("limiteUtilizado")
+    private Double limiteUtilizado;
+
+    @JsonProperty("caracteristicaCredito")
+    private CaracteristicaCredito caracteristicaCredito;
+
+    @JsonProperty("parcelamentoFatura")
+    private List<Parcela> parcelamentoFatura;
+
+    @JsonProperty("parcelamentoAutomatico")
+    private List<Parcela> parcelamentoAutomatico;
+
+    @JsonProperty("saldoRotativo")
+    private List<SaldoRotativo> saldoRotativo;
+}
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+@Data
+public class CaracteristicaCredito {
+    @JsonProperty("modalidade")
+    private String modalidade;
+
+    @JsonProperty("sistemaAmortizacao")
+    private String sistemaAmortizacao;
+
+    @JsonProperty("idContratoPortabilidade")
+    private String idContratoPortabilidade;
+
+    @JsonProperty("jurosCobrados")
+    private Double jurosCobrados;
+
+    @JsonProperty("jurosPendenteCobranca")
+    private Double jurosPendenteCobranca;
+
+    @JsonProperty("taxaJurosMensal")
+    private Double taxaJurosMensal;
+
+    @JsonProperty("taxaJurosAnualNominal")
+    private Double taxaJurosAnualNominal;
+
+    @JsonProperty("taxaJurosAnualEfetiva")
+    private Double taxaJurosAnualEfetiva;
+
+    @JsonProperty("parcelasContrato")
+    private Integer parcelasContrato;
+
+    @JsonProperty("parcelasAbertas")
+    private Integer parcelasAbertas;
+
+    @JsonProperty("dataUltimoVencimento")
+    private String dataUltimoVencimento;
+
+    @JsonProperty("valorOriginalDivida")
+    private Double valorOriginalDivida;
+
+    @JsonProperty("saldoDevedor")
+    private Double saldoDevedor;
+
+    @JsonProperty("dataAtualizacao")
+    private String dataAtualizacao;
+}
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+@Data
+public class Parcela {
+    @JsonProperty("numeroParcela")
+    private Integer numeroParcela;
+
+    @JsonProperty("dataVencimento")
+    private String dataVencimento;
+
+    @JsonProperty("principalIOF")
+    private Double principalIOF;
+
+    @JsonProperty("encargos")
+    private Double encargos;
+
+    @JsonProperty("valorParcela")
+    private Double valorParcela;
+
+    @JsonProperty("status")
+    private String status;
+}
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+@Data
+public class SaldoRotativo {
+    @JsonProperty("numeroParcela")
+    private Integer numeroParcela;
+
+    @JsonProperty("principalIOF")
+    private Double principalIOF;
+
+    @JsonProperty("encargos")
+    private Double encargos;
+
+    @JsonProperty("valorParcela")
+    private Double valorParcela;
+}
