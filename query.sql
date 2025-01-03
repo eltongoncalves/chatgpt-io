@@ -27,3 +27,18 @@ LEFT JOIN
     PARCELAMENTO_AUTOMATICO_PORTABILIDADE pa ON dc.ID = pa.detalhes_conta_id
 ORDER BY 
     hc.brcrddcH0DataLote, dc.brcrddcD1Conta;
+
+
+
+@Query("""
+    SELECT d
+    FROM HeaderEntity h
+    JOIN DetalhesContaEntity d ON h.id = d.header.id
+    WHERE d.brcrddcD1Conta = :brcrddcD1Conta
+    AND h.data = (
+        SELECT MAX(h2.data) 
+        FROM HeaderEntity h2
+    )
+""")
+List<DetalhesContaEntity> findMostRecentHeaderWithDetalhesConta(@Param("brcrddcD1Conta") String brcrddcD1Conta);
+
