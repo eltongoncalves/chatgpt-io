@@ -1,0 +1,530 @@
+package com.grupopan.service.cartoes.fatura.datasources.database.model.portabilidade;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.util.Objects;
+
+
+@Entity
+@Table(name = "HEADER_PORTABILIDADE")
+public class  HeaderEntity {
+
+    @Id
+    @Column(name = "ID")
+    private String id;
+
+    @Column(name = "brcrddcH0Corp", nullable = false, length = 10)
+    private String brcrddcH0Corp;
+
+    @Column(name = "brcrddcH0DataLote", nullable = false)
+    private String brcrddcH0DataLote;
+
+    @Column(name = "brcrddcH0SequenciaLote", nullable = false, length = 10)
+    private String brcrddcH0SequenciaLote;
+
+    @Column(name = "brcrddcH0NomeArquivo", nullable = false, length = 255)
+    private String brcrddcH0NomeArquivo;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBrcrddcH0Corp() {
+        return brcrddcH0Corp;
+    }
+
+    public void setBrcrddcH0Corp(String brcrddcH0Corp) {
+        this.brcrddcH0Corp = brcrddcH0Corp;
+    }
+
+    public String getBrcrddcH0DataLote() {
+        return brcrddcH0DataLote;
+    }
+
+    public void setBrcrddcH0DataLote(String brcrddcH0DataLote) {
+        this.brcrddcH0DataLote = brcrddcH0DataLote;
+    }
+
+    public String getBrcrddcH0SequenciaLote() {
+        return brcrddcH0SequenciaLote;
+    }
+
+    public void setBrcrddcH0SequenciaLote(String brcrddcH0SequenciaLote) {
+        this.brcrddcH0SequenciaLote = brcrddcH0SequenciaLote;
+    }
+
+    public String getBrcrddcH0NomeArquivo() {
+        return brcrddcH0NomeArquivo;
+    }
+
+    public void setBrcrddcH0NomeArquivo(String brcrddcH0NomeArquivo) {
+        this.brcrddcH0NomeArquivo = brcrddcH0NomeArquivo;
+    }
+
+    public String getFiller() {
+        return filler;
+    }
+
+    public void setFiller(String filler) {
+        this.filler = filler;
+        this.id = this.generatePK();
+    }
+
+    public String generatePK() {
+        return String.valueOf(Objects.hash(this.brcrddcH0Corp,this.brcrddcH0DataLote, this.brcrddcH0SequenciaLote,brcrddcH0NomeArquivo));
+    }
+}
+
+
+package com.grupopan.service.cartoes.fatura.datasources.database.model.portabilidade;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.util.Objects;
+
+@Entity
+@Table(name = "DETALHES_CONTA_PORTABILIDADE")
+public class DetalhesContaEntity {
+
+    @Id
+    private String id;
+
+    @ManyToOne
+    @JoinColumn(name = "header_id", nullable = false)
+    private HeaderEntity header;
+
+    @Column(name = "brcrddcD1Corp", nullable = false, length = 10)
+    private String brcrddcD1Corp;
+
+    @Column(name = "brcrddcD1Conta", nullable = false, length = 20)
+    private String brcrddcD1Conta;
+
+    @Column(name = "brcrddcD1Prod", length = 10)
+    private String brcrddcD1Prod;
+
+    @Column(name = "brcrddcD1Subprod", length = 10)
+    private String brcrddcD1Subprod;
+
+    @Column(name = "brcrddcD1CpfCnpj", length = 20)
+    private String brcrddcD1CpfCnpj;
+
+    @Column(name = "brcrddcD1Cartaotit", length = 10)
+    private String brcrddcD1Cartaotit;
+
+    @Column(name = "brcrddcD1Pymtduedt")
+    private String brcrddcD1Pymtduedt;
+
+    @Column(name = "brcrddcD1Vlrminvencida", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Vlrminvencida;
+
+    @Column(name = "brcrddcD1Vlrfatvencida", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Vlrfatvencida;
+
+    @Column(name = "brcrddcD1Limiteglobal", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limiteglobal;
+
+    @Column(name = "brcrddcD1Saldoglobal", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldoglobal;
+
+    @Column(name = "brcrddcD1Limitesaque", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limitesaque;
+
+    @Column(name = "brcrddcD1Saldosaque", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldosaque;
+
+    @Column(name = "brcrddcD1Limiteparc", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limiteparc;
+
+    @Column(name = "brcrddcD1Saldoparc", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldoparc;
+
+    @Column(name = "brcrddcD1Limitecredp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Limitecredp;
+
+    @Column(name = "brcrddcD1Saldocredp", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Saldocredp;
+
+    @Column(name = "brcrddcD1Multaaprop", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Multaaprop;
+
+    @Column(name = "brcrddcD1Moraaprop", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Moraaprop;
+
+    @Column(name = "brcrddcD1Descontoparcfat", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Descontoparcfat;
+
+    @Column(name = "brcrddcD1Descontoparcaut", precision = 15, scale = 2)
+    private BigDecimal brcrddcD1Descontoparcaut;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public HeaderEntity getHeader() {
+        return header;
+    }
+
+    public void setHeader(HeaderEntity header) {
+        this.header = header;
+        this.id = String.valueOf(this.hashCode()).concat("H").concat(this.header.getId());
+    }
+
+    public String getBrcrddcD1Corp() {
+        return brcrddcD1Corp;
+    }
+
+    public void setBrcrddcD1Corp(String brcrddcD1Corp) {
+        this.brcrddcD1Corp = brcrddcD1Corp;
+    }
+
+    public String getBrcrddcD1Conta() {
+        return brcrddcD1Conta;
+    }
+
+    public void setBrcrddcD1Conta(String brcrddcD1Conta) {
+        this.brcrddcD1Conta = brcrddcD1Conta;
+    }
+
+    public String getBrcrddcD1Prod() {
+        return brcrddcD1Prod;
+    }
+
+    public void setBrcrddcD1Prod(String brcrddcD1Prod) {
+        this.brcrddcD1Prod = brcrddcD1Prod;
+    }
+
+    public String getBrcrddcD1Subprod() {
+        return brcrddcD1Subprod;
+    }
+
+    public void setBrcrddcD1Subprod(String brcrddcD1Subprod) {
+        this.brcrddcD1Subprod = brcrddcD1Subprod;
+    }
+
+    public String getBrcrddcD1CpfCnpj() {
+        return brcrddcD1CpfCnpj;
+    }
+
+    public void setBrcrddcD1CpfCnpj(String brcrddcD1CpfCnpj) {
+        this.brcrddcD1CpfCnpj = brcrddcD1CpfCnpj;
+    }
+
+    public String getBrcrddcD1Cartaotit() {
+        return brcrddcD1Cartaotit;
+    }
+
+    public void setBrcrddcD1Cartaotit(String brcrddcD1Cartaotit) {
+        this.brcrddcD1Cartaotit = brcrddcD1Cartaotit;
+    }
+
+    public String getBrcrddcD1Pymtduedt() {
+        return brcrddcD1Pymtduedt;
+    }
+
+    public void setBrcrddcD1Pymtduedt(String brcrddcD1Pymtduedt) {
+        this.brcrddcD1Pymtduedt = brcrddcD1Pymtduedt;
+    }
+
+    public BigDecimal getBrcrddcD1Vlrminvencida() {
+        return brcrddcD1Vlrminvencida;
+    }
+
+    public void setBrcrddcD1Vlrminvencida(BigDecimal brcrddcD1Vlrminvencida) {
+        this.brcrddcD1Vlrminvencida = brcrddcD1Vlrminvencida;
+    }
+
+    public BigDecimal getBrcrddcD1Vlrfatvencida() {
+        return brcrddcD1Vlrfatvencida;
+    }
+
+    public void setBrcrddcD1Vlrfatvencida(BigDecimal brcrddcD1Vlrfatvencida) {
+        this.brcrddcD1Vlrfatvencida = brcrddcD1Vlrfatvencida;
+    }
+
+    public BigDecimal getBrcrddcD1Limiteglobal() {
+        return brcrddcD1Limiteglobal;
+    }
+
+    public void setBrcrddcD1Limiteglobal(BigDecimal brcrddcD1Limiteglobal) {
+        this.brcrddcD1Limiteglobal = brcrddcD1Limiteglobal;
+    }
+
+    public BigDecimal getBrcrddcD1Saldoglobal() {
+        return brcrddcD1Saldoglobal;
+    }
+
+    public void setBrcrddcD1Saldoglobal(BigDecimal brcrddcD1Saldoglobal) {
+        this.brcrddcD1Saldoglobal = brcrddcD1Saldoglobal;
+    }
+
+    public BigDecimal getBrcrddcD1Limitesaque() {
+        return brcrddcD1Limitesaque;
+    }
+
+    public void setBrcrddcD1Limitesaque(BigDecimal brcrddcD1Limitesaque) {
+        this.brcrddcD1Limitesaque = brcrddcD1Limitesaque;
+    }
+
+    public BigDecimal getBrcrddcD1Saldosaque() {
+        return brcrddcD1Saldosaque;
+    }
+
+    public void setBrcrddcD1Saldosaque(BigDecimal brcrddcD1Saldosaque) {
+        this.brcrddcD1Saldosaque = brcrddcD1Saldosaque;
+    }
+
+    public BigDecimal getBrcrddcD1Limiteparc() {
+        return brcrddcD1Limiteparc;
+    }
+
+    public void setBrcrddcD1Limiteparc(BigDecimal brcrddcD1Limiteparc) {
+        this.brcrddcD1Limiteparc = brcrddcD1Limiteparc;
+    }
+
+    public BigDecimal getBrcrddcD1Saldoparc() {
+        return brcrddcD1Saldoparc;
+    }
+
+    public void setBrcrddcD1Saldoparc(BigDecimal brcrddcD1Saldoparc) {
+        this.brcrddcD1Saldoparc = brcrddcD1Saldoparc;
+    }
+
+    public BigDecimal getBrcrddcD1Limitecredp() {
+        return brcrddcD1Limitecredp;
+    }
+
+    public void setBrcrddcD1Limitecredp(BigDecimal brcrddcD1Limitecredp) {
+        this.brcrddcD1Limitecredp = brcrddcD1Limitecredp;
+    }
+
+    public BigDecimal getBrcrddcD1Saldocredp() {
+        return brcrddcD1Saldocredp;
+    }
+
+    public void setBrcrddcD1Saldocredp(BigDecimal brcrddcD1Saldocredp) {
+        this.brcrddcD1Saldocredp = brcrddcD1Saldocredp;
+    }
+
+    public BigDecimal getBrcrddcD1Multaaprop() {
+        return brcrddcD1Multaaprop;
+    }
+
+    public void setBrcrddcD1Multaaprop(BigDecimal brcrddcD1Multaaprop) {
+        this.brcrddcD1Multaaprop = brcrddcD1Multaaprop;
+    }
+
+    public BigDecimal getBrcrddcD1Moraaprop() {
+        return brcrddcD1Moraaprop;
+    }
+
+    public void setBrcrddcD1Moraaprop(BigDecimal brcrddcD1Moraaprop) {
+        this.brcrddcD1Moraaprop = brcrddcD1Moraaprop;
+    }
+
+    public BigDecimal getBrcrddcD1Descontoparcfat() {
+        return brcrddcD1Descontoparcfat;
+    }
+
+    public void setBrcrddcD1Descontoparcfat(BigDecimal brcrddcD1Descontoparcfat) {
+        this.brcrddcD1Descontoparcfat = brcrddcD1Descontoparcfat;
+    }
+
+    public BigDecimal getBrcrddcD1Descontoparcaut() {
+        return brcrddcD1Descontoparcaut;
+    }
+
+    public void setBrcrddcD1Descontoparcaut(BigDecimal brcrddcD1Descontoparcaut) {
+        this.brcrddcD1Descontoparcaut = brcrddcD1Descontoparcaut;
+    }
+
+    public String getFiller() {
+        return filler;
+    }
+
+    public void setFiller(String filler) {
+        this.filler = filler;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DetalhesContaEntity that = (DetalhesContaEntity) o;
+        return Objects.equals(brcrddcD1Corp, that.brcrddcD1Corp) && Objects.equals(brcrddcD1Conta, that.brcrddcD1Conta) && Objects.equals(brcrddcD1Prod, that.brcrddcD1Prod) && Objects.equals(brcrddcD1Subprod, that.brcrddcD1Subprod) && Objects.equals(brcrddcD1CpfCnpj, that.brcrddcD1CpfCnpj);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                brcrddcD1Corp,
+                brcrddcD1Conta,
+                brcrddcD1Prod,
+                brcrddcD1Subprod,
+                brcrddcD1CpfCnpj) & 0x7FFFFFFF;
+    }
+}
+
+
+package com.grupopan.service.cartoes.fatura.datasources.database.model.portabilidade;
+
+import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.util.Objects;
+
+@Entity
+@Table(name = "PARCELAMENTO_AUTOMATICO_PORTABILIDADE")
+public class ParcelamentoAutomaticoEntity {
+
+    @Id
+    private String id;
+
+    @ManyToOne
+    @JoinColumn(name = "detalhes_conta_id", nullable = false)
+    private DetalhesContaEntity detalhesConta;
+
+    @Column(name = "brcrddcD5Corp", length = 10)
+    private String brcrddcD5Corp;
+
+    @Column(name = "brcrddcD5Conta", length = 20)
+    private String brcrddcD5Conta;
+
+    @Column(name = "brcrddcD5VlroriCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5VlroriCompra;
+
+    @Column(name = "brcrddcD5SldrotCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5SldrotCompra;
+
+    @Column(name = "brcrddcD5SldportCompra", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5SldportCompra;
+
+    @Column(name = "brcrddcD5Enccobmt", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5Enccobmt;
+
+    @Column(name = "brcrddcD5Encapur", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5Encapur;
+
+    @Column(name = "brcrddcD5Sldbmj", precision = 15, scale = 2)
+    private BigDecimal brcrddcD5Sldbmj;
+
+    @Column(name = "filler", length = 255)
+    private String filler;
+
+    public BigDecimal getBrcrddcD5SldrotCompra() {
+        return brcrddcD5SldrotCompra;
+    }
+
+    public void setBrcrddcD5SldrotCompra(BigDecimal brcrddcD5SldrotCompra) {
+        this.brcrddcD5SldrotCompra = brcrddcD5SldrotCompra;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public DetalhesContaEntity getDetalhesConta() {
+        return detalhesConta;
+    }
+
+    public void setDetalhesConta(DetalhesContaEntity detalhesConta) {
+        this.detalhesConta = detalhesConta;
+        this.id = String.valueOf(this.hashCode()).concat("H").concat(this.detalhesConta.getHeader().getId());
+    }
+
+    public String getBrcrddcD5Corp() {
+        return brcrddcD5Corp;
+    }
+
+    public void setBrcrddcD5Corp(String brcrddcD5Corp) {
+        this.brcrddcD5Corp = brcrddcD5Corp;
+    }
+
+    public String getBrcrddcD5Conta() {
+        return brcrddcD5Conta;
+    }
+
+    public void setBrcrddcD5Conta(String brcrddcD5Conta) {
+        this.brcrddcD5Conta = brcrddcD5Conta;
+    }
+
+    public BigDecimal getBrcrddcD5VlroriCompra() {
+        return brcrddcD5VlroriCompra;
+    }
+
+    public void setBrcrddcD5VlroriCompra(BigDecimal brcrddcD5VlroriCompra) {
+        this.brcrddcD5VlroriCompra = brcrddcD5VlroriCompra;
+    }
+
+    public BigDecimal getBrcrddcD5SldportCompra() {
+        return brcrddcD5SldportCompra;
+    }
+
+    public void setBrcrddcD5SldportCompra(BigDecimal brcrddcD5SldportCompra) {
+        this.brcrddcD5SldportCompra = brcrddcD5SldportCompra;
+    }
+
+    public BigDecimal getBrcrddcD5Enccobmt() {
+        return brcrddcD5Enccobmt;
+    }
+
+    public void setBrcrddcD5Enccobmt(BigDecimal brcrddcD5Enccobmt) {
+        this.brcrddcD5Enccobmt = brcrddcD5Enccobmt;
+    }
+
+    public BigDecimal getBrcrddcD5Encapur() {
+        return brcrddcD5Encapur;
+    }
+
+    public void setBrcrddcD5Encapur(BigDecimal brcrddcD5Encapur) {
+        this.brcrddcD5Encapur = brcrddcD5Encapur;
+    }
+
+    public BigDecimal getBrcrddcD5Sldbmj() {
+        return brcrddcD5Sldbmj;
+    }
+
+    public void setBrcrddcD5Sldbmj(BigDecimal brcrddcD5Sldbmj) {
+        this.brcrddcD5Sldbmj = brcrddcD5Sldbmj;
+    }
+
+    public String getFiller() {
+        return filler;
+    }
+
+    public void setFiller(String filler) {
+        this.filler = filler;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ParcelamentoAutomaticoEntity that = (ParcelamentoAutomaticoEntity) o;
+        return Objects.equals(brcrddcD5Corp, that.brcrddcD5Corp) && Objects.equals(brcrddcD5Conta, that.brcrddcD5Conta) && Objects.equals(brcrddcD5VlroriCompra, that.brcrddcD5VlroriCompra) && Objects.equals(brcrddcD5SldrotCompra, that.brcrddcD5SldrotCompra) && Objects.equals(brcrddcD5SldportCompra, that.brcrddcD5SldportCompra);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brcrddcD5Corp, brcrddcD5Conta, brcrddcD5VlroriCompra, brcrddcD5SldrotCompra, brcrddcD5SldportCompra) & 0x7FFFFFFF;
+    }
+}
