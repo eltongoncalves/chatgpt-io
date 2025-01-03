@@ -1,130 +1,355 @@
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: db
+-- Tempo de geração: 02/01/2025 às 08:43
+-- Versão do servidor: 9.1.0
+-- Versão do PHP: 8.2.8
 
-import java.util.List;
-
-@Data
-public class ContratoCredito {
-    @JsonProperty("nomeTitular")
-    private String nomeTitular;
-
-    @JsonProperty("cpfCnpj")
-    private String cpfCnpj;
-
-    @JsonProperty("dataEmissao")
-    private String dataEmissao;
-
-    @JsonProperty("limiteTotal")
-    private Double limiteTotal;
-
-    @JsonProperty("limiteDisponivel")
-    private Double limiteDisponivel;
-
-    @JsonProperty("limiteUtilizado")
-    private Double limiteUtilizado;
-
-    @JsonProperty("caracteristicaCredito")
-    private CaracteristicaCredito caracteristicaCredito;
-
-    @JsonProperty("parcelamentoFatura")
-    private List<Parcela> parcelamentoFatura;
-
-    @JsonProperty("parcelamentoAutomatico")
-    private List<Parcela> parcelamentoAutomatico;
-
-    @JsonProperty("saldoRotativo")
-    private List<SaldoRotativo> saldoRotativo;
-}
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-@Data
-public class CaracteristicaCredito {
-    @JsonProperty("modalidade")
-    private String modalidade;
+--
+-- Banco de dados: `dbpan`
+--
 
-    @JsonProperty("sistemaAmortizacao")
-    private String sistemaAmortizacao;
+-- --------------------------------------------------------
 
-    @JsonProperty("idContratoPortabilidade")
-    private String idContratoPortabilidade;
+--
+-- Estrutura para tabela `CONTRATO_PARC_FORMATADOPP_PORTABILIDADE`
+--
 
-    @JsonProperty("jurosCobrados")
-    private Double jurosCobrados;
+CREATE TABLE `CONTRATO_PARC_FORMATADOPP_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD7Corp` varchar(255) NOT NULL,
+  `brcrddcD7Conta` varchar(255) DEFAULT NULL,
+  `brcrddcD7Contrato` varchar(255) DEFAULT NULL,
+  `brcrddcD7Tipo` varchar(255) DEFAULT NULL,
+  `brcrddcD7Numparcela` varchar(255) DEFAULT NULL,
+  `brcrddcD7Dtvencto` varchar(255) DEFAULT NULL,
+  `brcrddcD7Vlramortizado` decimal(30,2) DEFAULT NULL,
+  `brcrddcD7Vlrjuros` decimal(30,2) DEFAULT NULL,
+  `brcrddcD7Vlrprestacao` decimal(30,2) DEFAULT NULL,
+  `brcrddcD7Saldonominal` decimal(30,2) DEFAULT NULL,
+  `brcrddcD7Sitparcela` varchar(255) DEFAULT NULL,
+  `filler` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-    @JsonProperty("jurosPendenteCobranca")
-    private Double jurosPendenteCobranca;
+-- --------------------------------------------------------
 
-    @JsonProperty("taxaJurosMensal")
-    private Double taxaJurosMensal;
+--
+-- Estrutura para tabela `CONTRATO_PARC_TIPO4E14_PORTABILIDADE`
+--
 
-    @JsonProperty("taxaJurosAnualNominal")
-    private Double taxaJurosAnualNominal;
+CREATE TABLE `CONTRATO_PARC_TIPO4E14_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD6Conta` varchar(255) NOT NULL,
+  `brcrddcD6Corp` varchar(255) DEFAULT NULL,
+  `brcrddcD6Contrato` varchar(255) DEFAULT NULL,
+  `brcrddcD6Tipo` varchar(255) DEFAULT NULL,
+  `brcrddcD6Cartao` varchar(255) DEFAULT NULL,
+  `brcrddcD6Dtefetiva` varchar(255) DEFAULT NULL,
+  `brcrddcD6Qtdparcela` varchar(255) DEFAULT NULL,
+  `brcrddcD6Prazo` varchar(255) DEFAULT NULL,
+  `brcrddcD6Taxa` varchar(255) DEFAULT NULL,
+  `brcrddcD6Sistcalculo` varchar(255) DEFAULT NULL,
+  `brcrddcD6Vlrfinanciado` decimal(30,2) DEFAULT NULL,
+  `brcrddcD6Totjuros` varchar(255) DEFAULT NULL,
+  `brcrddcD6Totiof` varchar(255) DEFAULT NULL,
+  `brcrddcD6Tottarifa` varchar(255) DEFAULT NULL,
+  `brcrddcD6Totcontrato` varchar(255) DEFAULT NULL,
+  `brcrddcD6Totparcelas` varchar(255) DEFAULT NULL,
+  `brcrddcD6Vlrdesconto` decimal(30,2) DEFAULT NULL,
+  `brcrddcD6Totavencer` decimal(30,2) DEFAULT NULL,
+  `brcrddcD6Encargopostados` varchar(255) DEFAULT NULL,
+  `brcrddcD6Jurosapurados` varchar(255) DEFAULT NULL,
+  `brcrddcD6Vlrbmj` decimal(30,2) DEFAULT NULL,
+  `filler` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-    @JsonProperty("taxaJurosAnualEfetiva")
-    private Double taxaJurosAnualEfetiva;
+-- --------------------------------------------------------
 
-    @JsonProperty("parcelasContrato")
-    private Integer parcelasContrato;
+--
+-- Estrutura para tabela `CREDITO_ROTATIVO_COMPRA_PORTABILIDADE`
+--
 
-    @JsonProperty("parcelasAbertas")
-    private Integer parcelasAbertas;
+CREATE TABLE `CREDITO_ROTATIVO_COMPRA_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD2Corp` varchar(255) NOT NULL,
+  `brcrddcD2Conta` varchar(255) NOT NULL,
+  `brcrddcD2VlroriCompra` decimal(30,2) NOT NULL,
+  `brcrddcD2SldrotCompra` decimal(30,2) NOT NULL,
+  `brcrddcD2SldportCompra` decimal(30,2) NOT NULL,
+  `brcrddcD2Enccobmt` decimal(30,2) NOT NULL,
+  `brcrddcD2Encapur` decimal(30,2) NOT NULL,
+  `brcrddcD2Sldbmj` decimal(30,2) NOT NULL,
+  `filler` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-    @JsonProperty("dataUltimoVencimento")
-    private String dataUltimoVencimento;
+-- --------------------------------------------------------
 
-    @JsonProperty("valorOriginalDivida")
-    private Double valorOriginalDivida;
+--
+-- Estrutura para tabela `CREDITO_ROTATIVO_SAQUE_PORTABILIDADE`
+--
 
-    @JsonProperty("saldoDevedor")
-    private Double saldoDevedor;
+CREATE TABLE `CREDITO_ROTATIVO_SAQUE_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD3Corp` varchar(255) NOT NULL,
+  `brcrddcD3Conta` varchar(255) NOT NULL,
+  `brcrddcD3VlroriCompra` decimal(30,2) NOT NULL,
+  `brcrddcD3SldrotCompra` decimal(30,2) NOT NULL,
+  `brcrddcD3SldportCompra` decimal(30,2) NOT NULL,
+  `brcrddcD3Enccobmt` decimal(30,2) NOT NULL,
+  `brcrddcD3Encapur` decimal(30,2) NOT NULL,
+  `brcrddcD3Sldbmj` decimal(30,2) NOT NULL,
+  `filler` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-    @JsonProperty("dataAtualizacao")
-    private String dataAtualizacao;
-}
+-- --------------------------------------------------------
 
+--
+-- Estrutura para tabela `DETALHES_CONTA_PORTABILIDADE`
+--
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+CREATE TABLE `DETALHES_CONTA_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `header_id` varchar(20) NOT NULL,
+  `brcrddcD1Corp` varchar(255) NOT NULL,
+  `brcrddcD1Conta` varchar(255) NOT NULL,
+  `brcrddcD1Prod` varchar(255) DEFAULT NULL,
+  `brcrddcD1Subprod` varchar(255) DEFAULT NULL,
+  `brcrddcD1CpfCnpj` varchar(255) DEFAULT NULL,
+  `brcrddcD1Cartaotit` varchar(255) DEFAULT NULL,
+  `brcrddcD1Pymtduedt` varchar(255) DEFAULT NULL,
+  `brcrddcD1Vlrminvencida` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Vlrfatvencida` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Limiteglobal` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Saldoglobal` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Limitesaque` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Saldosaque` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Limiteparc` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Saldoparc` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Limitecredp` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Saldocredp` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Multaaprop` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Moraaprop` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Descontoparcfat` decimal(30,2) DEFAULT NULL,
+  `brcrddcD1Descontoparcaut` decimal(30,2) DEFAULT NULL,
+  `filler` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-@Data
-public class Parcela {
-    @JsonProperty("numeroParcela")
-    private Integer numeroParcela;
+-- --------------------------------------------------------
 
-    @JsonProperty("dataVencimento")
-    private String dataVencimento;
+--
+-- Estrutura para tabela `HEADER_PORTABILIDADE`
+--
 
-    @JsonProperty("principalIOF")
-    private Double principalIOF;
+CREATE TABLE `HEADER_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `brcrddcH0Corp` varchar(3) NOT NULL,
+  `brcrddcH0DataLote` varchar(255) NOT NULL,
+  `brcrddcH0SequenciaLote` varchar(6) NOT NULL,
+  `brcrddcH0NomeArquivo` varchar(255) NOT NULL,
+  `filler` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-    @JsonProperty("encargos")
-    private Double encargos;
+-- --------------------------------------------------------
 
-    @JsonProperty("valorParcela")
-    private Double valorParcela;
+--
+-- Estrutura para tabela `PARCELAMENTO_AUTOMATICO_PORTABILIDADE`
+--
 
-    @JsonProperty("status")
-    private String status;
-}
+CREATE TABLE `PARCELAMENTO_AUTOMATICO_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD5Corp` varchar(255) NOT NULL,
+  `brcrddcD5Conta` varchar(255) NOT NULL,
+  `brcrddcD5VlroriCompra` decimal(30,2) NOT NULL,
+  `brcrddcD5SldrotCompra` decimal(30,2) NOT NULL,
+  `brcrddcD5SldportCompra` decimal(30,2) NOT NULL,
+  `brcrddcD5Enccobmt` decimal(30,2) NOT NULL,
+  `brcrddcD5Encapur` decimal(30,2) NOT NULL,
+  `brcrddcD5Sldbmj` decimal(30,2) NOT NULL,
+  `filler` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+--
+-- Estrutura para tabela `PARCELAMENTO_FATURA_PORTABILIDADE`
+--
 
-@Data
-public class SaldoRotativo {
-    @JsonProperty("numeroParcela")
-    private Integer numeroParcela;
+CREATE TABLE `PARCELAMENTO_FATURA_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD4Corp` varchar(255) NOT NULL,
+  `brcrddcD4Conta` varchar(255) NOT NULL,
+  `brcrddcD4VlroriCompra` decimal(30,2) NOT NULL,
+  `brcrddcD4SldrotCompra` decimal(30,2) NOT NULL,
+  `brcrddcD4SldportCompra` decimal(30,2) NOT NULL,
+  `brcrddcD4Enccobmt` decimal(30,2) NOT NULL,
+  `brcrddcD4Encapur` decimal(30,2) NOT NULL,
+  `brcrddcD4Sldbmj` decimal(30,2) NOT NULL,
+  `filler` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-    @JsonProperty("principalIOF")
-    private Double principalIOF;
+-- --------------------------------------------------------
 
-    @JsonProperty("encargos")
-    private Double encargos;
+--
+-- Estrutura para tabela `TAXAS_ROTATIVO_PORTABILIDADE`
+--
 
-    @JsonProperty("valorParcela")
-    private Double valorParcela;
-}
+CREATE TABLE `TAXAS_ROTATIVO_PORTABILIDADE` (
+  `ID` varchar(255) NOT NULL,
+  `detalhes_conta_id` varchar(255) NOT NULL,
+  `brcrddcD8Corp` varchar(255) NOT NULL,
+  `brcrddcD8Conta` varchar(255) DEFAULT NULL,
+  `brcrddcD8Taxrot` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Taxrotp` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Taxrotano` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Taxsaq` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Taxsaqp` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Taxsaqano` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Pfatuam` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Pfmppam` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Pfatuaa` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Paratuam` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Parmppam` decimal(30,2) DEFAULT NULL,
+  `brcrddcD8Paratuaa` decimal(30,2) DEFAULT NULL,
+  `filler` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices de tabela `CONTRATO_PARC_FORMATADOPP_PORTABILIDADE`
+--
+ALTER TABLE `CONTRATO_PARC_FORMATADOPP_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_CONTRATO_PARC_FORMATADOPP_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Índices de tabela `CONTRATO_PARC_TIPO4E14_PORTABILIDADE`
+--
+ALTER TABLE `CONTRATO_PARC_TIPO4E14_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_CONTRATO_PARC_TIPO4E14_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Índices de tabela `CREDITO_ROTATIVO_COMPRA_PORTABILIDADE`
+--
+ALTER TABLE `CREDITO_ROTATIVO_COMPRA_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_CREDITO_ROTATIVO_COMPRA_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Índices de tabela `CREDITO_ROTATIVO_SAQUE_PORTABILIDADE`
+--
+ALTER TABLE `CREDITO_ROTATIVO_SAQUE_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_CREDITO_ROTATIVO_SAQUE_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Índices de tabela `DETALHES_CONTA_PORTABILIDADE`
+--
+ALTER TABLE `DETALHES_CONTA_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_DETALHES_CONTA_PORTABILIDADE_HEADER` (`header_id`);
+
+--
+-- Índices de tabela `HEADER_PORTABILIDADE`
+--
+ALTER TABLE `HEADER_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Índices de tabela `PARCELAMENTO_AUTOMATICO_PORTABILIDADE`
+--
+ALTER TABLE `PARCELAMENTO_AUTOMATICO_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_PARCELAMENTO_AUTOMATICO_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Índices de tabela `PARCELAMENTO_FATURA_PORTABILIDADE`
+--
+ALTER TABLE `PARCELAMENTO_FATURA_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_PARCELAMENTO_FATURA_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Índices de tabela `TAXAS_ROTATIVO_PORTABILIDADE`
+--
+ALTER TABLE `TAXAS_ROTATIVO_PORTABILIDADE`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_TAXAS_ROTATIVO_DETALHES_CONTA` (`detalhes_conta_id`);
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `CONTRATO_PARC_FORMATADOPP_PORTABILIDADE`
+--
+ALTER TABLE `CONTRATO_PARC_FORMATADOPP_PORTABILIDADE`
+  ADD CONSTRAINT `FK_CONTRATO_PARC_FORMATADOPP_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `CONTRATO_PARC_TIPO4E14_PORTABILIDADE`
+--
+ALTER TABLE `CONTRATO_PARC_TIPO4E14_PORTABILIDADE`
+  ADD CONSTRAINT `FK_CONTRATO_PARC_TIPO4E14_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `CREDITO_ROTATIVO_COMPRA_PORTABILIDADE`
+--
+ALTER TABLE `CREDITO_ROTATIVO_COMPRA_PORTABILIDADE`
+  ADD CONSTRAINT `FK_CREDITO_ROTATIVO_COMPRA_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `CREDITO_ROTATIVO_SAQUE_PORTABILIDADE`
+--
+ALTER TABLE `CREDITO_ROTATIVO_SAQUE_PORTABILIDADE`
+  ADD CONSTRAINT `FK_CREDITO_ROTATIVO_SAQUE_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `DETALHES_CONTA_PORTABILIDADE`
+--
+ALTER TABLE `DETALHES_CONTA_PORTABILIDADE`
+  ADD CONSTRAINT `FK_DETALHES_CONTA_PORTABILIDADE_HEADER` FOREIGN KEY (`header_id`) REFERENCES `HEADER_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `PARCELAMENTO_AUTOMATICO_PORTABILIDADE`
+--
+ALTER TABLE `PARCELAMENTO_AUTOMATICO_PORTABILIDADE`
+  ADD CONSTRAINT `FK_PARCELAMENTO_AUTOMATICO_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `PARCELAMENTO_FATURA_PORTABILIDADE`
+--
+ALTER TABLE `PARCELAMENTO_FATURA_PORTABILIDADE`
+  ADD CONSTRAINT `FK_PARCELAMENTO_FATURA_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+
+--
+-- Restrições para tabelas `TAXAS_ROTATIVO_PORTABILIDADE`
+--
+ALTER TABLE `TAXAS_ROTATIVO_PORTABILIDADE`
+  ADD CONSTRAINT `FK_TAXAS_ROTATIVO_DETALHES_CONTA` FOREIGN KEY (`detalhes_conta_id`) REFERENCES `DETALHES_CONTA_PORTABILIDADE` (`ID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
