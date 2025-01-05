@@ -41,3 +41,12 @@ ORDER BY
     )
 """)
 List<DetalhesContaEntity> findMostRecentHeaderWithDetalhesConta(@Param("brcrddcD1Conta") String brcrddcD1Conta);
+
+
+ SELECT  d.id
+                      FROM HEADER_PORTABILIDADE h JOIN DETALHES_CONTA_PORTABILIDADE d ON h.ID = d.header_id
+                      WHERE
+                      	d.brcrddcD1Conta = :brcrddcD1Conta
+                          AND STR_TO_DATE(h.brcrddcH0DataLote, '%Y-%m-%d') = (
+                          SELECT MAX(STR_TO_DATE(h2.brcrddcH0DataLote, '%Y-%m-%d')) as data FROM HEADER_PORTABILIDADE h2
+                      )
