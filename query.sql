@@ -35,10 +35,9 @@ ORDER BY
     FROM HeaderEntity h
     JOIN DetalhesContaEntity d ON h.id = d.header.id
     WHERE d.brcrddcD1Conta = :brcrddcD1Conta
-    AND h.data = (
-        SELECT MAX(h2.data) 
+    AND PARSEDATETIME(h.data, 'yyyy-MM-dd') = (
+        SELECT MAX(PARSEDATETIME(h2.data, 'yyyy-MM-dd')) 
         FROM HeaderEntity h2
     )
 """)
 List<DetalhesContaEntity> findMostRecentHeaderWithDetalhesConta(@Param("brcrddcD1Conta") String brcrddcD1Conta);
-
